@@ -30,7 +30,7 @@ nav {
     width: 99%;
     height: 100px;
     font-size: 80px;
-    border: 2px black;
+    border: 2px;
     border-radius: 20px;
     font-weight: 300;
     margin: 5px 5px 10px 5px;
@@ -114,4 +114,13 @@ li {
     margin-top: 10px;
     padding: 5px 10px;
     background: yellowgreen;
+}
+
+footer {
+    background: darkgreen;
+    width: 99%;
+    height: 100px;
+    border: 2px;
+    border-radius: 20px;
+    margin: 20px, 5px, 5px, 5px;
 }
