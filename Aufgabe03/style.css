@@ -41,6 +41,8 @@ ul {
 }
 
 main {
+    text-align: center;
+    align-items: center;
     max-width: 800px;
     width: 50%;
     margin-left: 25%;
@@ -114,6 +116,7 @@ li {
     margin-top: 10px;
     padding: 5px 10px;
     background: yellowgreen;
+    font-weight: bolder;
 }
 
 footer {
@@ -123,4 +126,65 @@ footer {
     border: 2px;
     border-radius: 20px;
     margin: 20px, 5px, 5px, 5px;
+}
+
+.bildlink:hover {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+#eingabebox {
+    text-align: left;
+}
+
+.eingabe {
+    height: 25px;
+    width: 300px;
+    border-left: 3px solid lightgrey;
+    padding: 10px 10px 10px 10px lightgrey;
+    margin: 4px;
+    background-color: lightgrey;
+    color: white;
+    font-weight: bolder;
+}
+
+#button {
+    background-color: lightgrey;
+    height: 30px;
+    width: 80px;
+    padding: 10px 10px 10px 10px lightgrey;
+    color: white;
+    margin-bottom: 30px;
+}
+
+#eingabefeld {
+    height: 50px;
+    width: 500px;
+    border-left: 3px solid lightgrey;
+    padding: 10px 10px 10px 10px lightgrey;
+    margin: 4px;
+    background-color: lightgrey;
+    color: white;
+    font-weight: bolder;
+}
+
+::placeholder {
+    color: white;
+    opacity: 1;
+    font-weight: bolder;
+}
+
+::-ms-input-placeholder {
+    color: white;
+}
+
+.footerlink {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+#datenschutz {
+    color: gray;
+    font-size: 10px;
 }
