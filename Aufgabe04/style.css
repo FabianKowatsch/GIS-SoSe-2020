@@ -118,6 +118,15 @@ p~button {
     font-size: 17px;
 }
 
+.navbar img {
+    width: 17px;
+    height: 17px;
+}
+
+header img {
+    width: 100%;
+}
+
 .navbar a:hover {
     background: darkgray;
     color: black;
