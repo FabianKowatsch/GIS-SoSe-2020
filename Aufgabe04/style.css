@@ -113,7 +113,7 @@ p~button {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 14px 8px;
     text-decoration: none;
     font-size: 17px;
 }
@@ -121,10 +121,6 @@ p~button {
 .navbar img {
     width: 17px;
     height: 17px;
-}
-
-header img {
-    width: 100%;
 }
 
 .navbar a:hover {
@@ -135,6 +131,7 @@ header img {
 
 header>img {
     margin-top: 2%;
+    width: 100%;
 }
 
 #pay {
@@ -159,6 +156,7 @@ footer {
 
 .footer>div {
     text-align: left;
+    font-size: 10px;
 }
 
 @media all and (min-width: 600px) {
@@ -171,6 +169,9 @@ footer {
     }
     .navbar {
         justify-content: flex-end;
+    }
+    .navbar a {
+        padding: 14px 16px;
     }
     .container {
         justify-content: flex-start;
@@ -203,6 +204,9 @@ footer {
     }
     .navbar {
         justify-content: flex-end;
+    }
+    .navbar a {
+        padding: 14px 16px;
     }
     .container {
         justify-content: flex-start;
