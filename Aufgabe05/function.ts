@@ -18,11 +18,11 @@ namespace Aufgabe05 {
             desc.innerHTML = liste[i].desc;
             newDiv.appendChild(desc);
             let txt: HTMLElement = document.createElement("p");  
-            txt.innerHTML = "pro Stück";
+            txt.innerHTML = "pro Stück: ";
             newDiv.appendChild(txt);
             let preis: HTMLElement = document.createElement("b");
             preis.setAttribute("class", "preis");
-            preis.innerHTML = "" + liste[i].preis + "";
+            preis.innerHTML = "" + liste[i].preis + " €";
             txt.appendChild(preis);
             
       
@@ -41,11 +41,11 @@ namespace Aufgabe05 {
             desc2.innerHTML = liste[i].desc;
             newDiv2.appendChild(desc2);
             let txt2: HTMLElement = document.createElement("p");  
-            txt2.innerHTML = "pro Stück";
+            txt2.innerHTML = "pro Stück :";
             newDiv2.appendChild(txt2);
             let preis2: HTMLElement = document.createElement("b");
             preis2.setAttribute("class", "preis");
-            preis2.innerHTML = "" + liste[i].preis + "";
+            preis2.innerHTML = "" + liste[i].preis + " €";
             txt2.appendChild(preis2);
             break;
         case 3:
@@ -62,11 +62,11 @@ namespace Aufgabe05 {
             desc3.innerHTML = liste[i].desc;
             newDiv3.appendChild(desc3);
             let txt3: HTMLElement = document.createElement("p");  
-            txt3.innerHTML = "pro Stück";
+            txt3.innerHTML = "pro Stück :";
             newDiv3.appendChild(txt3);
             let preis3: HTMLElement = document.createElement("b");
             preis3.setAttribute("class", "preis");
-            preis3.innerHTML = "" + liste[i].preis + "";
+            preis3.innerHTML = "" + liste[i].preis + " €";
             txt3.appendChild(preis3);
         default:
             console.log("Fehler");
