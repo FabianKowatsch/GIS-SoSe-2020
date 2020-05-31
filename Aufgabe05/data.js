@@ -24,7 +24,7 @@ let i;
 for (i = 0; i < liste.length; i++) {
     switch (liste[i].kat) {
         case 1:
-            let element1 = document.getElementById("container2");
+            let element1 = document.getElementById("container1");
             element1.innerHTML = "<div class=\"item\">" + liste[i].name + "<img src=" + liste[i].bild + "alt=\"Bild\"> <p class=\"desc\">" + liste[i].desc + "</p><p>pro Stück: <b class=\"preis\">" + liste[i].preis + "</b></p><button name=\"Kaufen\">Kaufen</button></div>";
             break;
         case 2:
@@ -32,7 +32,7 @@ for (i = 0; i < liste.length; i++) {
             element2.innerHTML = "<div class=\"item\">" + liste[i].name + "<img src=" + liste[i].bild + "alt=\"Bild\"> <p class=\"desc\">" + liste[i].desc + "</p><p>pro Stück: <b class=\"preis\">" + liste[i].preis + "</b></p><button name=\"Kaufen\">Kaufen</button></div>";
             break;
         case 3:
-            let element3 = document.getElementById("container2");
+            let element3 = document.getElementById("container3");
             element3.innerHTML = "<div class=\"item\">" + liste[i].name + "<img src=" + liste[i].bild + "alt=\"Bild\"> <p class=\"desc\">" + liste[i].desc + "</p><p>pro Stück: <b class=\"preis\">" + liste[i].preis + "</b></p><button name=\"Kaufen\">Kaufen</button></div>";
         default:
             console.log("Fehler");

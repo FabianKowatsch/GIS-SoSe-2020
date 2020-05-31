@@ -38,7 +38,7 @@ for (i = 0; i < liste.length; i++) {
     
 switch (liste[i].kat) {
     case 1:
-        let element1: HTMLElement = document.getElementById("container2") as HTMLElement;
+        let element1: HTMLElement = document.getElementById("container1") as HTMLElement;
         element1.innerHTML = "<div class=\"item\">" + liste[i].name + "<img src=" + liste[i].bild + "alt=\"Bild\"> <p class=\"desc\">" + liste[i].desc + "</p><p>pro Stück: <b class=\"preis\">" + liste[i].preis + "</b></p><button name=\"Kaufen\">Kaufen</button></div>" ;
        
         
@@ -50,7 +50,7 @@ switch (liste[i].kat) {
 
         break;
     case 3:
-        let element3: HTMLElement = document.getElementById("container2") as HTMLElement;
+        let element3: HTMLElement = document.getElementById("container3") as HTMLElement;
         element3.innerHTML = "<div class=\"item\">" + liste[i].name + "<img src=" + liste[i].bild + "alt=\"Bild\"> <p class=\"desc\">" + liste[i].desc + "</p><p>pro Stück: <b class=\"preis\">" + liste[i].preis + "</b></p><button name=\"Kaufen\">Kaufen</button></div>" ;
 
     default:
