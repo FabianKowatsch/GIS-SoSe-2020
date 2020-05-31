@@ -20,14 +20,14 @@ let liste = [
     { name: "Laubrechen", bild: "\"laubrechen.jpg\"", desc: "ein Rechen", preis: 15, kat: 3, ad: false },
     { name: "Strohbesen", bild: "\"strohbesen.jpg\"", desc: "der altbewährte Bestseller", preis: 5, kat: 3, ad: false }
 ];
+let a = document.getElementById("container1");
+a.innerHTML = "a";
 let i;
 for (i = 0; i < liste.length; i++) {
     switch (liste[i].kat) {
         case 1:
             let element1 = document.getElementById("container1");
             element1.innerHTML = "<div class=\"item\">" + liste[i].name + "<img src=" + liste[i].bild + "alt=\"Bild\"> <p class=\"desc\">" + liste[i].desc + "</p><p>pro Stück: <b class=\"preis\">" + liste[i].preis + "</b></p><button name=\"Kaufen\">Kaufen</button></div>";
-            let a = document.getElementById("container1");
-            a.innerHTML = "a";
             break;
         case 2:
             let element2 = document.getElementById("container2");
