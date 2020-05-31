@@ -40,7 +40,8 @@ switch (liste[i].kat) {
     case 1:
         let element1: HTMLElement = document.getElementById("container1") as HTMLElement;
         element1.innerHTML = "<div class=\"item\">" + liste[i].name + "<img src=" + liste[i].bild + "alt=\"Bild\"> <p class=\"desc\">" + liste[i].desc + "</p><p>pro Stück: <b class=\"preis\">" + liste[i].preis + "</b></p><button name=\"Kaufen\">Kaufen</button></div>" ;
-       
+        let a: HTMLElement = document.getElementById("container1") as HTMLElement;
+        a.innerHTML = "a";
         
   
         break;
