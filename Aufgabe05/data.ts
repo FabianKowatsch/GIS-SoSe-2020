@@ -32,7 +32,7 @@ let liste: Artikel[] = [
     {name: "Strohbesen", bild: "\"strohbesen.jpg\"", desc: "der altbewährte Bestseller", preis: 5, kat: 3, ad: false}
    
 ];
-let a: HTMLElement = document.getElementById("container1") as HTMLElement;
+const a: HTMLElement = document.getElementById("kat1") as HTMLElement;
 a.innerHTML = "a";
 
 let i: number;
