@@ -20,7 +20,10 @@ let liste = [
     { name: "Laubrechen", bild: "\"laubrechen.jpg\"", desc: "ein Rechen", preis: 15, kat: 3, ad: false },
     { name: "Strohbesen", bild: "\"strohbesen.jpg\"", desc: "der altbewährte Bestseller", preis: 5, kat: 3, ad: false }
 ];
-const a = document.getElementById("kat1");
+let b = document.createElement("p");
+document.body.appendChild(b);
+b.innerHTML = "neues E";
+let a = document.getElementById("kat1");
 a.innerHTML = "a";
 let i;
 for (i = 0; i < liste.length; i++) {
