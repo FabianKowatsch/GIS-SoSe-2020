@@ -47,9 +47,7 @@ namespace Aufgabe05 {
         
     switch (liste[i].kat) {
         case 1:
-            addItem(1, i, false);
-            
-      
+            addItem(1, i, false);     
             break;
         case 2:
             addItem(2, i, false);
@@ -67,8 +65,6 @@ namespace Aufgabe05 {
         if (liste[i].kat == 3 ) {
             addItem(3, i, true);
         }
-
     }
     }
-
 }
