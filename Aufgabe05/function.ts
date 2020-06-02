@@ -1,139 +1,71 @@
 namespace Aufgabe05 {
 
+   
+    function addItem(x: number, i: number, as: boolean): void {
+        let newDiv: HTMLElement = document.createElement("div");
+        newDiv.setAttribute("class", "item");
+        newDiv.innerHTML = liste[i].name;
+        if (x == 1) {
+        document.getElementById("container1")?.appendChild(newDiv);
+    }
+        if (x == 2) {
+        document.getElementById("container2")?.appendChild(newDiv);
+    }
+        if  (x == 3) {
+        document.getElementById("container3")?.appendChild(newDiv);
+    }
+        
+        if (as && x == 2) {
+        document.getElementById("ad1")?.appendChild(newDiv);
+    }
+        if (as && x == 3) {
+        document.getElementById("ad2")?.appendChild(newDiv);
+    }
+        let bild: HTMLElement = document.createElement("img");
+        bild.setAttribute("src", liste[i].bild);
+        bild.setAttribute("alt", liste[i].name);
+        newDiv.appendChild(bild);
+        let desc: HTMLElement = document.createElement("p");
+        desc.setAttribute("class", "desc");
+        desc.innerHTML = liste[i].desc;
+        newDiv.appendChild(desc);
+        let txt: HTMLElement = document.createElement("p");  
+        txt.innerHTML = "pro Stück: ";
+        newDiv.appendChild(txt);
+        let preis: HTMLElement = document.createElement("b");
+        preis.setAttribute("class", "preis");
+        preis.innerHTML = "" + liste[i].preis + " €";
+        txt.appendChild(preis);
+        let knopf: HTMLElement = document.createElement("button");
+        knopf.setAttribute("name", "kaufen");
+        knopf.innerHTML = "Kaufen";
+        newDiv.appendChild(knopf);
+    }
+
     
     for (let i: number = 0; i < liste.length; i++) {
         
     switch (liste[i].kat) {
         case 1:
-            let newDiv: HTMLElement = document.createElement("div");
-            newDiv.setAttribute("class", "item");
-            newDiv.innerHTML = liste[i].name;
-            document.getElementById("container1")?.appendChild(newDiv);
-            let bild: HTMLElement = document.createElement("img");
-            bild.setAttribute("src", liste[i].bild);
-            bild.setAttribute("alt", liste[i].name);
-            newDiv.appendChild(bild);
-            let desc: HTMLElement = document.createElement("p");
-            desc.setAttribute("class", "desc");
-            desc.innerHTML = liste[i].desc;
-            newDiv.appendChild(desc);
-            let txt: HTMLElement = document.createElement("p");  
-            txt.innerHTML = "pro Stück: ";
-            newDiv.appendChild(txt);
-            let preis: HTMLElement = document.createElement("b");
-            preis.setAttribute("class", "preis");
-            preis.innerHTML = "" + liste[i].preis + " €";
-            txt.appendChild(preis);
-            let knopf: HTMLElement = document.createElement("button");
-            knopf.setAttribute("name", "kaufen");
-            knopf.innerHTML = "Kaufen";
-            newDiv.appendChild(knopf);
+            addItem(1, i, false);
             
       
             break;
         case 2:
-            let newDiv2: HTMLElement = document.createElement("div");
-            newDiv2.setAttribute("class", "item");
-            newDiv2.innerHTML = liste[i].name;
-            document.getElementById("container2")?.appendChild(newDiv2);
-            let bild2: HTMLElement = document.createElement("img");
-            bild2.setAttribute("src", liste[i].bild);
-            bild2.setAttribute("alt", liste[i].name);
-            newDiv2.appendChild(bild2);
-            let desc2: HTMLElement = document.createElement("p");
-            desc2.setAttribute("class", "desc");
-            desc2.innerHTML = liste[i].desc;
-            newDiv2.appendChild(desc2);
-            let txt2: HTMLElement = document.createElement("p");  
-            txt2.innerHTML = "pro Stück :";
-            newDiv2.appendChild(txt2);
-            let preis2: HTMLElement = document.createElement("b");
-            preis2.setAttribute("class", "preis");
-            preis2.innerHTML = "" + liste[i].preis + " €";
-            txt2.appendChild(preis2);
-            let knopf2: HTMLElement = document.createElement("button");
-            knopf2.setAttribute("name", "kaufen");
-            knopf2.innerHTML = "Kaufen";
-            newDiv2.appendChild(knopf2);
+            addItem(2, i, false);
             break;
         case 3:
-            let newDiv3: HTMLElement = document.createElement("div");
-            newDiv3.setAttribute("class", "item");
-            newDiv3.innerHTML = liste[i].name;
-            document.getElementById("container3")?.appendChild(newDiv3);
-            let bild3: HTMLElement = document.createElement("img");
-            bild3.setAttribute("src", liste[i].bild);
-            bild3.setAttribute("alt", liste[i].name);
-            newDiv3.appendChild(bild3);
-            let desc3: HTMLElement = document.createElement("p");
-            desc3.setAttribute("class", "desc");
-            desc3.innerHTML = liste[i].desc;
-            newDiv3.appendChild(desc3);
-            let txt3: HTMLElement = document.createElement("p");  
-            txt3.innerHTML = "pro Stück :";
-            newDiv3.appendChild(txt3);
-            let preis3: HTMLElement = document.createElement("b");
-            preis3.setAttribute("class", "preis");
-            preis3.innerHTML = "" + liste[i].preis + " €";
-            txt3.appendChild(preis3);
-            let knopf3: HTMLElement = document.createElement("button");
-            knopf3.setAttribute("name", "kaufen");
-            knopf3.innerHTML = "Kaufen";
-            newDiv3.appendChild(knopf3);
+            addItem(3, i, false);
         default:
             console.log("Fehler");
             break;
     }
     if (liste[i].ad) {
         if (liste[i].kat == 2 ) {
-            let newDiv: HTMLElement = document.createElement("div");
-            newDiv.setAttribute("class", "item");
-            newDiv.innerHTML = liste[i].name;
-            document.getElementById("ad1")?.appendChild(newDiv);
-            let bild: HTMLElement = document.createElement("img");
-            bild.setAttribute("src", liste[i].bild);
-            bild.setAttribute("alt", liste[i].name);
-            newDiv.appendChild(bild);
-            let desc: HTMLElement = document.createElement("p");
-            desc.setAttribute("class", "desc");
-            desc.innerHTML = liste[i].desc;
-            newDiv.appendChild(desc);
-            let txt: HTMLElement = document.createElement("p");  
-            txt.innerHTML = "pro Stück: ";
-            newDiv.appendChild(txt);
-            let preis: HTMLElement = document.createElement("b");
-            preis.setAttribute("class", "preis");
-            preis.innerHTML = "" + liste[i].preis + " €";
-            txt.appendChild(preis);
-            let knopf: HTMLElement = document.createElement("button");
-            knopf.setAttribute("name", "kaufen");
-            knopf.innerHTML = "Kaufen";
-            newDiv.appendChild(knopf);
+            addItem(2, i, true);
         }
         if (liste[i].kat == 3 ) {
-            let newDiv2: HTMLElement = document.createElement("div");
-            newDiv2.setAttribute("class", "item");
-            newDiv2.innerHTML = liste[i].name;
-            document.getElementById("ad2")?.appendChild(newDiv2);
-            let bild2: HTMLElement = document.createElement("img");
-            bild2.setAttribute("src", liste[i].bild);
-            bild2.setAttribute("alt", liste[i].name);
-            newDiv2.appendChild(bild2);
-            let desc2: HTMLElement = document.createElement("p");
-            desc2.setAttribute("class", "desc");
-            desc2.innerHTML = liste[i].desc;
-            newDiv2.appendChild(desc2);
-            let txt2: HTMLElement = document.createElement("p");  
-            txt2.innerHTML = "pro Stück :";
-            newDiv2.appendChild(txt2);
-            let preis2: HTMLElement = document.createElement("b");
-            preis2.setAttribute("class", "preis");
-            preis2.innerHTML = "" + liste[i].preis + " €";
-            txt2.appendChild(preis2);
-            let knopf2: HTMLElement = document.createElement("button");
-            knopf2.setAttribute("name", "kaufen");
-            knopf2.innerHTML = "Kaufen";
-            newDiv2.appendChild(knopf2);
+            addItem(3, i, true);
         }
 
     }
