@@ -73,9 +73,14 @@ main h3 {
 }
 
 .aside .item {
+    color: black;
     margin-top: 30px;
     width: 160px;
     height: 280px;
+}
+
+.aside .item .desc {
+    font-weight: normal;
 }
 
 .aside h3 {
@@ -122,6 +127,22 @@ p~button {
 .navbar img {
     width: 17px;
     height: 17px;
+}
+
+#counter {
+    font-size: 10px;
+    color: black;
+    background-color: green;
+    border: 1px solid green;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 1px 1px 2px black;
+}
+
+#pay {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
 }
 
 .navbar a:hover {
@@ -180,6 +201,11 @@ footer {
     .navtxt {
         display: inline;
     }
+    #counter {
+        font-size: 12px;
+        padding: 1px;
+        border: 2px 2px solid green;
+    }
 }
 
 @media all and (min-width: 1024px) {
@@ -217,5 +243,10 @@ footer {
     }
     .navtxt {
         display: inline;
+    }
+    #counter {
+        font-size: 12px;
+        padding: 1px;
+        border: 2px 2px solid green;
     }
 }
