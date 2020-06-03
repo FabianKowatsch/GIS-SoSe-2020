@@ -1,6 +1,5 @@
 namespace Aufgabe06 {
-
-   
+      
     function addItem(x: number, i: number, as: boolean): void {
         let newDiv: HTMLElement = document.createElement("div");
         newDiv.setAttribute("class", "item");
@@ -13,8 +12,7 @@ namespace Aufgabe06 {
     }
         if  (x == 3) {
         document.getElementById("container3")?.appendChild(newDiv);
-    }
-        
+    }       
         if (as && x == 2) {
         document.getElementById("ad1")?.appendChild(newDiv);
     }
@@ -40,9 +38,7 @@ namespace Aufgabe06 {
         knopf.setAttribute("name", "kaufen");
         knopf.innerHTML = "Kaufen";
         newDiv.appendChild(knopf);
-    }
-
-    
+    }    
     for (let i: number = 0; i < liste.length; i++) {
         
     switch (liste[i].kat) {
