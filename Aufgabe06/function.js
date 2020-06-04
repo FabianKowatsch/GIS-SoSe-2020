@@ -65,18 +65,32 @@ var Aufgabe06;
             }
         }
     }
-    let target = document.querySelector("button");
-    target.addEventListener("click", hndClick);
+    //Event Handling
+    let allButtons = document.querySelectorAll("button");
+    for (let i = 0; i < allButtons.length; i++) {
+        allButtons[i].addEventListener("click", hndClick);
+    }
+    let k1 = document.querySelector("#k1 *");
+    let k2 = document.querySelector("#k2 *");
+    let k3 = document.querySelector("#k3 *");
+    let showall = document.querySelector("#showall *");
+    k1.addEventListener("click", hndKat);
+    k2.addEventListener("click", hndKat);
+    k3.addEventListener("click", hndKat);
+    showall.addEventListener("click", hndKat);
+    //Zähler + Summe
     let zähler = 0;
     let summe = 0;
-    function hndClick(_onclick) {
+    //Funktion zum Zählen + Summe
+    function hndClick(_event) {
         if (zähler == 0) {
             let cnt = document.createElement("span");
             cnt.setAttribute("id", "counter");
             document.getElementById("pay")?.appendChild(cnt);
             zähler += 1;
             cnt.innerHTML = `0${zähler}`;
-            let prs = target.dataset.price;
+            let from = _event.target;
+            let prs = from.dataset.price;
             summe = summe + parseInt(prs);
             console.log(summe);
         }
@@ -87,9 +101,54 @@ var Aufgabe06;
                 cnt2.innerHTML = `0${zähler}`;
             if (zähler > 9)
                 cnt2.innerHTML = "" + zähler;
-            let prs = target.dataset.price;
+            let from = _event.target;
+            let prs = from.dataset.price;
             summe = summe + parseInt(prs);
             console.log(summe);
+        }
+    }
+    function hndKat(event) {
+        let kat1 = document.querySelector("#kat1");
+        let cont1 = document.querySelector("#container1");
+        let kat2 = document.querySelector("#kat2");
+        let cont2 = document.querySelector("#container2");
+        let kat3 = document.querySelector("#kat3");
+        let cont3 = document.querySelector("#container3");
+        switch (event.target) {
+            case k1:
+                kat1.setAttribute("class", "katname");
+                cont1.setAttribute("class", "container");
+                kat2.setAttribute("class", "hide");
+                cont2.setAttribute("class", "hide");
+                kat3.setAttribute("class", "hide");
+                cont3.setAttribute("class", "hide");
+                break;
+            case k2:
+                kat1.setAttribute("class", "hide");
+                cont1.setAttribute("class", "hide");
+                kat2.setAttribute("class", "katname");
+                cont2.setAttribute("class", "container");
+                kat3.setAttribute("class", "hide");
+                cont3.setAttribute("class", "hide");
+                break;
+            case k3:
+                kat1.setAttribute("class", "hide");
+                cont1.setAttribute("class", "hide");
+                kat2.setAttribute("class", "hide");
+                cont2.setAttribute("class", "hide");
+                kat3.setAttribute("class", "katname");
+                cont3.setAttribute("class", "container");
+                break;
+            case showall:
+                kat1.setAttribute("class", "katname");
+                cont1.setAttribute("class", "container");
+                kat2.setAttribute("class", "katname");
+                cont2.setAttribute("class", "container");
+                kat3.setAttribute("class", "katname");
+                cont3.setAttribute("class", "container");
+                break;
+            default:
+                break;
         }
     }
 })(Aufgabe06 || (Aufgabe06 = {}));
