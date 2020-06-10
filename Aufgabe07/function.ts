@@ -4,7 +4,7 @@ namespace Aufgabe07 {
         console.log("Response", response);
         let artikel: string = await response.json();
         let artArray: Artikel = JSON.parse(artikel);
-        console.log(artArray);
+        console.log(artikel);
       }
     console.log("start");
     communicate("https://fabiankowatsch.github.io/GIS-SoSe-2020/Aufgabe06/artikel.json");

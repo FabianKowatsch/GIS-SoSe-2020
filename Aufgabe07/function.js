@@ -6,7 +6,7 @@ var Aufgabe07;
         console.log("Response", response);
         let artikel = await response.json();
         let artArray = JSON.parse(artikel);
-        console.log(artArray);
+        console.log(artikel);
     }
     console.log("start");
     communicate("https://fabiankowatsch.github.io/GIS-SoSe-2020/Aufgabe06/artikel.json");
