@@ -1,19 +1,23 @@
 namespace Aufgabe07 {
-    async function communicate(_url: RequestInfo): Promise<void> {
+    async function communicate(_url: RequestInfo): Promise<string> {
         let response: Response = await fetch(_url);
         console.log("Response", response);
         let artikel: string = await response.json();
-        let artArray: Artikel = JSON.parse(artikel);
-        console.log(artikel);
+        return artikel;
       }
+    
+    
+    
     console.log("start");
-    communicate("https://fabiankowatsch.github.io/GIS-SoSe-2020/Aufgabe06/artikel.json");
+    communicate("https://fabiankowatsch.github.io/GIS-SoSe-2020/Test/artikel.json");
     console.log("end");
+    
+    const rray: Artikel[] = JSON.parse("a");
 //Funktion zum erstellen der Artikel
-    function addItem(x: number, i: number, as: boolean): void {
+    function addItem(x: number, i: number, as: boolean, obj: Artikel[]): void {
         let newDiv: HTMLElement = document.createElement("div");
         newDiv.setAttribute("class", "item");
-        newDiv.innerHTML = liste[i].name;
+        newDiv.innerHTML = obj[i].name;
         if (x == 1) {
         document.getElementById("container1")?.appendChild(newDiv);
     }
@@ -55,23 +59,23 @@ namespace Aufgabe07 {
         
     switch (liste[i].kat) {
         case 1:
-            addItem(1, i, false);     
+            addItem(1, i, false, rray);     
             break;
         case 2:
-            addItem(2, i, false);
+            addItem(2, i, false, rray);
             break;
         case 3:
-            addItem(3, i, false);
+            addItem(3, i, false, rray);
         default:
             
             break;
     }
     if (liste[i].ad) {
         if (liste[i].kat == 2 ) {
-            addItem(2, i, true);
+            addItem(2, i, true, rray);
         }
         if (liste[i].kat == 3 ) {
-            addItem(3, i, true);
+            addItem(3, i, true, rray);
         }
     }
     }

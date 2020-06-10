@@ -5,17 +5,17 @@ var Aufgabe07;
         let response = await fetch(_url);
         console.log("Response", response);
         let artikel = await response.json();
-        let artArray = JSON.parse(artikel);
-        console.log(artikel);
+        return artikel;
     }
     console.log("start");
-    communicate("https://fabiankowatsch.github.io/GIS-SoSe-2020/Aufgabe06/artikel.json");
+    communicate("https://fabiankowatsch.github.io/GIS-SoSe-2020/Test/artikel.json");
     console.log("end");
+    const rray = JSON.parse("a");
     //Funktion zum erstellen der Artikel
-    function addItem(x, i, as) {
+    function addItem(x, i, as, obj) {
         let newDiv = document.createElement("div");
         newDiv.setAttribute("class", "item");
-        newDiv.innerHTML = Aufgabe07.liste[i].name;
+        newDiv.innerHTML = obj[i].name;
         if (x == 1) {
             document.getElementById("container1")?.appendChild(newDiv);
         }
@@ -56,22 +56,22 @@ var Aufgabe07;
     for (let i = 0; i < Aufgabe07.liste.length; i++) {
         switch (Aufgabe07.liste[i].kat) {
             case 1:
-                addItem(1, i, false);
+                addItem(1, i, false, rray);
                 break;
             case 2:
-                addItem(2, i, false);
+                addItem(2, i, false, rray);
                 break;
             case 3:
-                addItem(3, i, false);
+                addItem(3, i, false, rray);
             default:
                 break;
         }
         if (Aufgabe07.liste[i].ad) {
             if (Aufgabe07.liste[i].kat == 2) {
-                addItem(2, i, true);
+                addItem(2, i, true, rray);
             }
             if (Aufgabe07.liste[i].kat == 3) {
-                addItem(3, i, true);
+                addItem(3, i, true, rray);
             }
         }
     }
