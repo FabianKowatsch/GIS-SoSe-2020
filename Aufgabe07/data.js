@@ -1,7 +1,7 @@
 "use strict";
-var Aufgabe06;
-(function (Aufgabe06) {
-    Aufgabe06.liste = [
+var Aufgabe07;
+(function (Aufgabe07) {
+    Aufgabe07.liste = [
         { name: "1m² Rasenfläche", bild: "rasen.jpg", desc: "Die seltenste Pflanze der Welt!", preis: 5, kat: 1, ad: false },
         { name: "Rosenstrauch", bild: "rose.jpg", desc: "Perfekt zum verschenken!", preis: 15, kat: 1, ad: false },
         { name: "Lavendel", bild: "lavendel.jpg", desc: "für den guten Duft im Garten:", preis: 3, kat: 1, ad: false },
@@ -22,5 +22,5 @@ var Aufgabe06;
         { name: "Laubrechen", bild: "laubrechen.jpg", desc: "ein Rechen", preis: 15, kat: 3, ad: false },
         { name: "Strohbesen", bild: "strohbesen.jpg", desc: "der altbewährte Bestseller", preis: 5, kat: 3, ad: false }
     ];
-})(Aufgabe06 || (Aufgabe06 = {}));
+})(Aufgabe07 || (Aufgabe07 = {}));
 //# sourceMappingURL=data.js.map
