@@ -6,7 +6,7 @@ namespace Aufgabe07 {
         console.log(ausgabe);
       }
     console.log("start");
-    communicate("https://hs-furtwangen.github.io/GIS-SoSe-2020/L07/testjson.json");
+    communicate("https://fabiankowatsch.github.io/GIS-SoSe-2020/Aufgabe06/artikel.json");
     console.log("end");
 //Funktion zum erstellen der Artikel
     function addItem(x: number, i: number, as: boolean): void {
