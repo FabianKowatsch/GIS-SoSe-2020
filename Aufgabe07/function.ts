@@ -2,8 +2,9 @@ namespace Aufgabe07 {
     async function communicate(_url: RequestInfo): Promise<void> {
         let response: Response = await fetch(_url);
         console.log("Response", response);
-        let ausgabe: string = await response.json();
-        console.log(ausgabe);
+        let artikel: string = await response.json();
+        let artArray: Artikel = JSON.parse(artikel);
+        console.log(artArray);
       }
     console.log("start");
     communicate("https://fabiankowatsch.github.io/GIS-SoSe-2020/Aufgabe06/artikel.json");

@@ -4,8 +4,9 @@ var Aufgabe07;
     async function communicate(_url) {
         let response = await fetch(_url);
         console.log("Response", response);
-        let ausgabe = await response.json();
-        console.log(ausgabe);
+        let artikel = await response.json();
+        let artArray = JSON.parse(artikel);
+        console.log(artArray);
     }
     console.log("start");
     communicate("https://fabiankowatsch.github.io/GIS-SoSe-2020/Aufgabe06/artikel.json");
