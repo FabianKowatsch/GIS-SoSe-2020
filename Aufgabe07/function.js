@@ -1,6 +1,15 @@
 "use strict";
 var Aufgabe07;
 (function (Aufgabe07) {
+    async function communicate(_url) {
+        let response = await fetch(_url);
+        console.log("Response", response);
+        let ausgabe = await response.json();
+        console.log(ausgabe);
+    }
+    console.log("start");
+    communicate("https://hs-furtwangen.github.io/GIS-SoSe-2020/L07/testjson.json");
+    console.log("end");
     //Funktion zum erstellen der Artikel
     function addItem(x, i, as) {
         let newDiv = document.createElement("div");
