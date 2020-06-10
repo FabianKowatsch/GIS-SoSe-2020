@@ -1,0 +1,257 @@
+.wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.wrapper>* {
+    padding: 10px;
+    flex: 1 100%;
+}
+
+.main {
+    text-align: center;
+}
+
+main h3 {
+    color: darkgreen;
+    margin-top: 50px;
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bolder;
+}
+
+.item img {
+    width: 160px;
+    height: 120px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.desc {
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.katname {
+    display: block;
+}
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 30px;
+}
+
+.hide {
+    display: none;
+}
+
+.item {
+    display: flex;
+    background: whitesmoke;
+    padding: 5px;
+    width: 200px;
+    height: 290px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    align-items: center;
+    flex-flow: column;
+    font-weight: bolder;
+}
+
+.aside {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
+.aside>div {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.aside .item {
+    color: black;
+    margin-top: 30px;
+    width: 160px;
+    height: 280px;
+}
+
+.aside .item .desc {
+    font-weight: normal;
+}
+
+.aside h3 {
+    margin-top: 40px;
+    color: green;
+    font-size: 15px;
+}
+
+p+p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+}
+
+p b {
+    font-size: 15px;
+}
+
+p~button {
+    color: white;
+    background-color: darkgreen;
+}
+
+.navbar {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    background-color: rgb(71, 71, 71);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 5px 5px;
+    text-decoration: none;
+    font-size: 17px;
+    -ms-user-select: None;
+    -moz-user-select: None;
+    -webkit-user-select: None;
+    user-select: None;
+    transition: background-color 0.4s ease-in-out 0s;
+}
+
+.navbar img {
+    width: 15px;
+    height: 15px;
+}
+
+#counter {
+    font-size: 10px;
+    color: black;
+    background-color: green;
+    border: 1px solid green;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 1px 1px 2px black;
+}
+
+#pay {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.navbar a:hover {
+    background-color: darkgray;
+    color: black;
+    text-shadow: 0px 0px 2px darkgreen;
+}
+
+header>img {
+    margin-top: 2%;
+    width: 100%;
+}
+
+footer {
+    background-color: rgb(71, 71, 71);
+    color: white;
+}
+
+.footer a {
+    text-decoration: none;
+    color: black;
+}
+
+.footer>div {
+    text-align: left;
+    font-size: 10px;
+}
+
+@media all and (min-width: 600px) {
+    .aside {
+        flex: 1 0 0;
+        flex-flow: column wrap;
+    }
+    .aside1 {
+        border-right: 1px solid lightgrey;
+    }
+    .navbar {
+        justify-content: flex-end;
+    }
+    .navbar a {
+        padding: 14px 16px;
+    }
+    .container {
+        justify-content: flex-start;
+    }
+    .main {
+        text-align: left;
+    }
+    .navbar img {
+        height: 20px;
+        width: 20px;
+    }
+    #counter {
+        font-size: 12px;
+        padding: 1px;
+        border: 2px 2px solid green;
+    }
+}
+
+@media all and (min-width: 1024px) {
+    .main {
+        flex: 3 0px;
+        text-align: left;
+    }
+    .aside {
+        flex-flow: column wrap;
+    }
+    .aside1 {
+        order: 1;
+        border-right: 1px solid lightgrey;
+    }
+    .main {
+        order: 2;
+    }
+    .aside2 {
+        order: 3;
+    }
+    .footer {
+        order: 4;
+    }
+    .navbar img {
+        height: 25px;
+        width: 25px;
+    }
+    .navbar {
+        justify-content: flex-end;
+    }
+    .navbar a {
+        padding: 14px 16px;
+    }
+    .container {
+        justify-content: flex-start;
+    }
+    #counter {
+        font-size: 12px;
+        padding: 1px;
+        border: 2px 2px solid green;
+    }
+}
