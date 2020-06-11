@@ -7,10 +7,14 @@ var Aufgabe07;
         console.log("Response", response);
         Aufgabe07.liste = JSON.parse(JSON.stringify(rückgabe));
     }
-    console.log("start");
-    communicate("https://fabiankowatsch.github.io/GIS-SoSe-2020/Test/artikel.json");
-    console.log("end");
-    const rray = JSON.parse("a");
+    async function init() {
+        console.log("start");
+        await communicate("https://fabiankowatsch.github.io/GIS-SoSe-2020/Test/artikel.json");
+        console.log("end");
+        buildPage();
+        createButtonEvents();
+    }
+    init();
     //Funktion zum erstellen der Artikel
     function addItem(x, i, as, obj) {
         let newDiv = document.createElement("div");
@@ -52,33 +56,37 @@ var Aufgabe07;
         knopf.innerHTML = "Kaufen";
         newDiv.appendChild(knopf);
     }
-    //Seitenaufbau  
-    for (let i = 0; i < Aufgabe07.liste.length; i++) {
-        switch (Aufgabe07.liste[i].kat) {
-            case 1:
-                addItem(1, i, false, rray);
-                break;
-            case 2:
-                addItem(2, i, false, rray);
-                break;
-            case 3:
-                addItem(3, i, false, rray);
-            default:
-                break;
-        }
-        if (Aufgabe07.liste[i].ad) {
-            if (Aufgabe07.liste[i].kat == 2) {
-                addItem(2, i, true, rray);
+    //Seitenaufbau
+    function buildPage() {
+        for (let i = 0; i < Aufgabe07.liste.length; i++) {
+            switch (Aufgabe07.liste[i].kat) {
+                case 1:
+                    addItem(1, i, false, Aufgabe07.liste);
+                    break;
+                case 2:
+                    addItem(2, i, false, Aufgabe07.liste);
+                    break;
+                case 3:
+                    addItem(3, i, false, Aufgabe07.liste);
+                default:
+                    break;
             }
-            if (Aufgabe07.liste[i].kat == 3) {
-                addItem(3, i, true, rray);
+            if (Aufgabe07.liste[i].ad) {
+                if (Aufgabe07.liste[i].kat == 2) {
+                    addItem(2, i, true, Aufgabe07.liste);
+                }
+                if (Aufgabe07.liste[i].kat == 3) {
+                    addItem(3, i, true, Aufgabe07.liste);
+                }
             }
         }
     }
     //Event Handling
-    let allButtons = document.querySelectorAll("button");
-    for (let i = 0; i < allButtons.length; i++) {
-        allButtons[i].addEventListener("click", hndClick);
+    function createButtonEvents() {
+        let allButtons = document.querySelectorAll("button");
+        for (let i = 0; i < allButtons.length; i++) {
+            allButtons[i].addEventListener("click", hndClick);
+        }
     }
     let k1 = document.querySelector("#k1 *");
     let k2 = document.querySelector("#k2 *");

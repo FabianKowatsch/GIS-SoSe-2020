@@ -8,12 +8,15 @@ namespace Aufgabe07 {
       }
     
     
-    
+    async function init(): Promise<void> {
     console.log("start");
-    communicate("https://fabiankowatsch.github.io/GIS-SoSe-2020/Test/artikel.json");
+    await communicate("https://fabiankowatsch.github.io/GIS-SoSe-2020/Test/artikel.json");
     console.log("end");
+    buildPage();
+    createButtonEvents();
+}
+    init();
     
-    const rray: Artikel[] = JSON.parse("a");
 //Funktion zum erstellen der Artikel
     function addItem(x: number, i: number, as: boolean, obj: Artikel[]): void {
         let newDiv: HTMLElement = document.createElement("div");
@@ -55,36 +58,40 @@ namespace Aufgabe07 {
         knopf.innerHTML = "Kaufen";
         newDiv.appendChild(knopf);
     } 
-//Seitenaufbau  
+//Seitenaufbau
+    function buildPage(): void {
     for (let i: number = 0; i < liste.length; i++) {
         
     switch (liste[i].kat) {
         case 1:
-            addItem(1, i, false, rray);     
+            addItem(1, i, false, liste);     
             break;
         case 2:
-            addItem(2, i, false, rray);
+            addItem(2, i, false, liste);
             break;
         case 3:
-            addItem(3, i, false, rray);
+            addItem(3, i, false, liste);
         default:
             
             break;
     }
     if (liste[i].ad) {
         if (liste[i].kat == 2 ) {
-            addItem(2, i, true, rray);
+            addItem(2, i, true, liste);
         }
         if (liste[i].kat == 3 ) {
-            addItem(3, i, true, rray);
+            addItem(3, i, true, liste);
         }
     }
     }
+}
 //Event Handling
+    function createButtonEvents(): void {
     let allButtons: NodeListOf<HTMLButtonElement> = document.querySelectorAll("button");
     for (let i: number = 0; i < allButtons.length; i++) {
         allButtons[i].addEventListener("click", hndClick);
     }
+}
     let k1: HTMLElement = document.querySelector("#k1 *") as HTMLElement;
     let k2: HTMLElement = document.querySelector("#k2 *") as HTMLElement;
     let k3: HTMLElement = document.querySelector("#k3 *") as HTMLElement;
