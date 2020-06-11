@@ -3,9 +3,9 @@ var Aufgabe07;
 (function (Aufgabe07) {
     async function communicate(_url) {
         let response = await fetch(_url);
+        let rückgabe = await response.json();
         console.log("Response", response);
-        let artikel = await response.json();
-        return artikel;
+        Aufgabe07.liste = JSON.parse(JSON.stringify(rückgabe));
     }
     console.log("start");
     communicate("https://fabiankowatsch.github.io/GIS-SoSe-2020/Test/artikel.json");

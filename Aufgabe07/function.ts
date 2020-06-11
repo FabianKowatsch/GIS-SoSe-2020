@@ -1,9 +1,10 @@
 namespace Aufgabe07 {
-    async function communicate(_url: RequestInfo): Promise<string> {
+    async function communicate(_url: RequestInfo): Promise<void> {
         let response: Response = await fetch(_url);
+        let rückgabe: JSON = await response.json();
         console.log("Response", response);
-        let artikel: string = await response.json();
-        return artikel;
+        liste = JSON.parse(JSON.stringify(rückgabe));
+        
       }
     
     
