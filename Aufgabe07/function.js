@@ -53,6 +53,8 @@ var Aufgabe07;
         let knopf = document.createElement("button");
         knopf.setAttribute("name", "kaufen");
         knopf.setAttribute("data-price", "" + Aufgabe07.liste[i].preis);
+        knopf.setAttribute("data-counter", "" + 0);
+        knopf.setAttribute("data-index", "" + i);
         knopf.innerHTML = "Kaufen";
         newDiv.appendChild(knopf);
     }
@@ -107,10 +109,6 @@ var Aufgabe07;
             document.getElementById("pay")?.appendChild(cnt);
             zähler += 1;
             cnt.innerHTML = `0${zähler}`;
-            let from = _event.target;
-            let prs = from.dataset.price;
-            summe = summe + parseInt(prs);
-            console.log(summe);
         }
         else {
             zähler += 1;
@@ -119,12 +117,25 @@ var Aufgabe07;
                 cnt2.innerHTML = `0${zähler}`;
             if (zähler > 9)
                 cnt2.innerHTML = "" + zähler;
-            let from = _event.target;
-            let prs = from.dataset.price;
-            summe = summe + parseInt(prs);
-            console.log(summe);
+        }
+        let from = _event.target;
+        let prs = from.dataset.price;
+        let aktuellstr = from.dataset.counter;
+        let aktuellid = from.dataset.index;
+        let aktuellint = parseInt(aktuellstr) + 1;
+        from.setAttribute("data-counter", "" + aktuellint);
+        summe = summe + parseInt(prs);
+        console.log(summe);
+        localStorage.setItem(aktuellid, aktuellint + "");
+        printStorage();
+    }
+    function printStorage() {
+        for (let i = 0; i < localStorage.length; ++i) {
+            let storageKey = localStorage.key(i);
+            console.log(storageKey + ":" + localStorage.getItem(storageKey));
         }
     }
+    //Kategorien ausblenden
     function hndKat(event) {
         let kat1 = document.querySelector("#kat1");
         let cont1 = document.querySelector("#container1");

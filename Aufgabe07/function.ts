@@ -55,6 +55,8 @@ namespace Aufgabe07 {
         let knopf: HTMLElement = document.createElement("button");
         knopf.setAttribute("name", "kaufen");
         knopf.setAttribute("data-price", "" + liste[i].preis);
+        knopf.setAttribute("data-counter", "" + 0);
+        knopf.setAttribute("data-index", "" + i);
         knopf.innerHTML = "Kaufen";
         newDiv.appendChild(knopf);
     } 
@@ -113,11 +115,7 @@ namespace Aufgabe07 {
     cnt.setAttribute("id", "counter");
     document.getElementById("pay")?.appendChild(cnt);
     zähler += 1;
-    cnt.innerHTML = `0${zähler}`; 
-    let from: HTMLButtonElement = _event.target as HTMLButtonElement;
-    let prs: string = from.dataset.price as string;
-    summe = summe + parseInt(prs);
-    console.log(summe);
+    cnt.innerHTML = `0${zähler}`;   
 }  
     else {  
     zähler += 1;
@@ -126,12 +124,28 @@ namespace Aufgabe07 {
         cnt2.innerHTML = `0${zähler}`;
     if (zähler > 9) 
         cnt2.innerHTML = "" + zähler;
+    }
     let from: HTMLButtonElement = _event.target as HTMLButtonElement;
     let prs: string = from.dataset.price as string;
+    let aktuellstr: string = from.dataset.counter as string;
+    let aktuellid: string = from.dataset.index as string;
+    let aktuellint: number = parseInt(aktuellstr) + 1;
+    from.setAttribute("data-counter", "" + aktuellint);
     summe = summe + parseInt(prs);
-    console.log(summe);  
-}
+    console.log(summe); 
+     
+    localStorage.setItem(aktuellid, aktuellint + "");
+    printStorage();
     }
+
+    function printStorage(): void {
+        for (let i: number = 0; i < localStorage.length; ++i) { 
+            let storageKey: string = localStorage.key(i) as string;
+            console.log(storageKey + ":" + localStorage.getItem(storageKey) );
+        }
+    }
+
+//Kategorien ausblenden
     function hndKat(event: Event): void {
         
         let kat1: HTMLElement = document.querySelector("#kat1") as HTMLElement;
