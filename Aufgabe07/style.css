@@ -251,6 +251,11 @@ footer {
     #übersicht {
         justify-content: flex-start;
     }
+    .haupt {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+    }
 }
 
 @media all and (min-width: 1024px) {
@@ -294,5 +299,10 @@ footer {
     }
     #übersicht {
         justify-content: flex-start;
+    }
+    .haupt {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
     }
 }
