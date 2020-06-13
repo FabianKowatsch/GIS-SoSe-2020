@@ -248,6 +248,9 @@ footer {
         padding: 1px;
         border: 2px 2px solid green;
     }
+    #übersicht {
+        justify-content: flex-start;
+    }
 }
 
 @media all and (min-width: 1024px) {
@@ -288,5 +291,8 @@ footer {
         font-size: 12px;
         padding: 1px;
         border: 2px 2px solid green;
+    }
+    #übersicht {
+        justify-content: flex-start;
     }
 }
