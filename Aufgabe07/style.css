@@ -122,6 +122,41 @@ p~button {
     width: 100%;
 }
 
+#übersicht {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+#übersicht div {
+    font-size: 16px;
+}
+
+#übersicht button {
+    font-size: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: darkgreen;
+    color: white;
+}
+
+#zähler {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.löschen {
+    background-color: darkgreen;
+    color: white;
+}
+
+.kaufen {
+    color: white;
+    background-color: darkgreen;
+}
+
 .navbar a {
     float: left;
     display: block;

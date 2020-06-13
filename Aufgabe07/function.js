@@ -8,6 +8,7 @@ var Aufgabe07;
         Aufgabe07.liste = JSON.parse(JSON.stringify(rückgabe));
     }
     async function init() {
+        localStorage.clear();
         console.log("start");
         await communicate("https://fabiankowatsch.github.io/GIS-SoSe-2020/Test/artikel.json");
         console.log("end");
@@ -83,7 +84,7 @@ var Aufgabe07;
             }
         }
     }
-    //Event Handling
+    //Event Handling erstellen
     function createButtonEvents() {
         let allButtons = document.querySelectorAll("button");
         for (let i = 0; i < allButtons.length; i++) {
@@ -101,7 +102,7 @@ var Aufgabe07;
     //Zähler + Summe
     let zähler = 0;
     let summe = 0;
-    //Funktion zum Zählen + Summe
+    //Funktion zum Zählen + Summe, Handle Click
     function hndClick(_event) {
         if (zähler == 0) {
             let cnt = document.createElement("span");
@@ -109,6 +110,7 @@ var Aufgabe07;
             document.getElementById("pay")?.appendChild(cnt);
             zähler += 1;
             cnt.innerHTML = `0${zähler}`;
+            printStorage();
         }
         else {
             zähler += 1;
@@ -125,8 +127,8 @@ var Aufgabe07;
         let aktuellint = parseInt(aktuellstr) + 1;
         from.setAttribute("data-counter", "" + aktuellint);
         summe = summe + parseInt(prs);
-        console.log(summe);
         localStorage.setItem(aktuellid, aktuellint + "");
+        localStorage.setItem("summe", summe + "");
         printStorage();
     }
     function printStorage() {
@@ -134,6 +136,7 @@ var Aufgabe07;
             let storageKey = localStorage.key(i);
             console.log(storageKey + ":" + localStorage.getItem(storageKey));
         }
+        console.log("___________");
     }
     //Kategorien ausblenden
     function hndKat(event) {

@@ -9,6 +9,7 @@ namespace Aufgabe07 {
     
     
     async function init(): Promise<void> {
+    localStorage.clear();
     console.log("start");
     await communicate("https://fabiankowatsch.github.io/GIS-SoSe-2020/Test/artikel.json");
     console.log("end");
@@ -87,7 +88,7 @@ namespace Aufgabe07 {
     }
     }
 }
-//Event Handling
+//Event Handling erstellen
     function createButtonEvents(): void {
     let allButtons: NodeListOf<HTMLButtonElement> = document.querySelectorAll("button");
     for (let i: number = 0; i < allButtons.length; i++) {
@@ -105,9 +106,11 @@ namespace Aufgabe07 {
     
 //Zähler + Summe
     let zähler: number = 0;
+    
     let summe: number = 0;
+    
 
-//Funktion zum Zählen + Summe
+//Funktion zum Zählen + Summe, Handle Click
     function hndClick(_event: Event): void {
     
     if (zähler == 0) {
@@ -115,7 +118,9 @@ namespace Aufgabe07 {
     cnt.setAttribute("id", "counter");
     document.getElementById("pay")?.appendChild(cnt);
     zähler += 1;
-    cnt.innerHTML = `0${zähler}`;   
+    cnt.innerHTML = `0${zähler}`; 
+     
+    printStorage();
 }  
     else {  
     zähler += 1;
@@ -131,10 +136,9 @@ namespace Aufgabe07 {
     let aktuellid: string = from.dataset.index as string;
     let aktuellint: number = parseInt(aktuellstr) + 1;
     from.setAttribute("data-counter", "" + aktuellint);
-    summe = summe + parseInt(prs);
-    console.log(summe); 
-     
+    summe = summe + parseInt(prs);  
     localStorage.setItem(aktuellid, aktuellint + "");
+    localStorage.setItem("summe", summe + "");
     printStorage();
     }
 
@@ -143,6 +147,7 @@ namespace Aufgabe07 {
             let storageKey: string = localStorage.key(i) as string;
             console.log(storageKey + ":" + localStorage.getItem(storageKey) );
         }
+        console.log("___________");
     }
 
 //Kategorien ausblenden

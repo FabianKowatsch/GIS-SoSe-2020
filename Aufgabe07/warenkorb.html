@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="data.js">
     </script>
-    <script src="function.js" defer>
+    <script src="pay.js" defer>
     </script>
 </head>
 
@@ -21,9 +21,17 @@
         <img src="Gartazon.jpg" alt="Gartazon">
     </header>
     <main>
-        <h3 id="kat1" class="katname">Ihr Einkaufswagen</h3>
-        <div class="container">
+        <h3 id="kat1" class="katname">Ihr Warenkorb</h3>
+        <div id="übersicht">
+            <div id="gesamt"></div>
+            <div>Gesamtpreis:<span id="gesamtpreis"></span></div>
+            <button>Zur Kasse</button>
+            <button id="clear">Warenkorb leeren</button>
+
         </div>
+        <div class="container" id="container1">
+        </div>
+
     </main>
     <footer class="footer">
         <div>Icons erstellt von <a href="https://www.flaticon.com/de/autoren/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/de/" title="Flaticon">www.flaticon.com</a><br> Icons erstellt von <a href="https://www.flaticon.com/authors/freepik"
