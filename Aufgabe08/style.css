@@ -1,0 +1,19 @@
+main {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+header {
+    text-align: center;
+    position: fixed;
+    background-color: darkgray;
+    width: 100%;
+    top: 0;
+}
+
+form {
+    display: flex;
+    flex-flow: column wrap;
+}
