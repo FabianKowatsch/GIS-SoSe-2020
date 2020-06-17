@@ -3,6 +3,8 @@ async function communicate(_url: RequestInfo): Promise<void> {
     console.log("Response", response);
     let ausgabe: string = await response.json();
     console.log(ausgabe);
+    console.log("a");
+    
   }
 console.log("start");
 communicate("https://hs-furtwangen.github.io/GIS-SoSe-2020/L07/testjson.json");
