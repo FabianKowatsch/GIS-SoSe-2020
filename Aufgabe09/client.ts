@@ -1,20 +1,31 @@
 namespace Aufgabe09 {
-    let button: HTMLButtonElement = document.getElementById("senden") as HTMLButtonElement;
-    button.addEventListener("click", hndClick);
+    document.getElementById("sendhtml")?.addEventListener("click", hndHTML);
+    document.getElementById("sendjson")?.addEventListener("click", hndJSON);
+    let antwort: string;
 
 
 
-    function hndClick(_event: Event): void { 
+    async function hndHTML(_event: Event): Promise<void> { 
     let formData: FormData = new FormData(document.forms[0]);
-    let url: string = "http://localhost:8100";
+    let url: string = "http://localhost:8200/html";
     let query: URLSearchParams = new URLSearchParams(<any>formData);
     url = url + "?" + query.toString();
-    communicate(url);
-
+    
+    await communicate(url);
+    (<HTMLElement>document.getElementById("antwort")).innerHTML  = antwort;
+}
+    async function hndJSON(_event: Event): Promise<void> { 
+    let formData: FormData = new FormData(document.forms[0]);
+    let url: string = "http://localhost:8200/json";
+    let query: URLSearchParams = new URLSearchParams(<any>formData);
+    url = url + "?" + query.toString();
+    await communicate(url);
+    let ausgabe: string = JSON.parse(antwort);
+    console.log(ausgabe);
 }
     async function communicate(_url: RequestInfo): Promise<void> {
     let response: Response = await fetch(_url);
-    let responsestring: String = await response.text();
-    console.log("Antwort: " + responsestring);
+    let responsestring: string = await response.text();
+    antwort = responsestring;
   }
 }
