@@ -30,7 +30,6 @@ var A09Server;
             let url = Url.parse(_request.url, true);
             //erstellt die url, mit der die Anfrage gestellt wurde
             let link = new URL(_request.url, `http://${_request.headers.host}`);
-            console.log(link);
             //führt je nach pathname andere Schritte mit dem Query-Teil aus
             let path = link.pathname;
             switch (path) {

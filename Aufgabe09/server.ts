@@ -26,9 +26,10 @@ export namespace A09Server {
         if (_request.url) {
             //erstellt aus dem query-teil ein assoziatives Array
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
+            
             //erstellt die url, mit der die Anfrage gestellt wurde
             let link: URL = new URL(_request.url, `http://${_request.headers.host}`);
-            console.log(link);
+
             //führt je nach pathname andere Schritte mit dem Query-Teil aus
             let path: string = link.pathname;
             switch (path) {
