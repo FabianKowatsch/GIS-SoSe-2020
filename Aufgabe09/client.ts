@@ -7,7 +7,7 @@ namespace Aufgabe09 {
 
     async function hndHTML(_event: Event): Promise<void> { 
     let formData: FormData = new FormData(document.forms[0]);
-    let url: string = "http://localhost:8200/html";
+    let url: string = "https://fabiankowatschgis.herokuapp.com/html";
     let query: URLSearchParams = new URLSearchParams(<any>formData);
     url = url + "?" + query.toString();
     
@@ -16,7 +16,7 @@ namespace Aufgabe09 {
 }
     async function hndJSON(_event: Event): Promise<void> { 
     let formData: FormData = new FormData(document.forms[0]);
-    let url: string = "http://localhost:8200/json";
+    let url: string = "https://fabiankowatschgis.herokuapp.com/json";
     let query: URLSearchParams = new URLSearchParams(<any>formData);
     url = url + "?" + query.toString();
     await communicate(url);

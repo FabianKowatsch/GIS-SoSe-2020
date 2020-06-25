@@ -28,7 +28,7 @@ export namespace A09Server {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
             
             //erstellt die url, mit der die Anfrage gestellt wurde
-            let link: URL = new URL(_request.url, `http://${_request.headers.host}`);
+            let link: URL = new URL(_request.url, `https://${_request.headers.host}`);
 
             //führt je nach pathname andere Schritte mit dem Query-Teil aus
             let path: string = link.pathname;

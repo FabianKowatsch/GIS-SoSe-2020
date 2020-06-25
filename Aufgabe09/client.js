@@ -6,7 +6,7 @@ var Aufgabe09;
     let antwort;
     async function hndHTML(_event) {
         let formData = new FormData(document.forms[0]);
-        let url = "http://localhost:8200/html";
+        let url = "https://fabiankowatschgis.herokuapp.com/html";
         let query = new URLSearchParams(formData);
         url = url + "?" + query.toString();
         await communicate(url);
@@ -14,7 +14,7 @@ var Aufgabe09;
     }
     async function hndJSON(_event) {
         let formData = new FormData(document.forms[0]);
-        let url = "http://localhost:8200/json";
+        let url = "https://fabiankowatschgis.herokuapp.com/json";
         let query = new URLSearchParams(formData);
         url = url + "?" + query.toString();
         await communicate(url);
