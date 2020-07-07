@@ -7,7 +7,6 @@ export namespace A11Server {
         [type: string]: string | string[];
     }
     let personen: Mongo.Collection;
-    console.log("Starting server");
     
     let port: string | number | undefined = Number(process.env.PORT);
 
@@ -19,6 +18,7 @@ export namespace A11Server {
 
     function startServer(_port: number | string): void {
         let server: Http.Server = Http.createServer();
+        console.log("Starting server");
  
         server.addListener("request", handleRequest);
         server.listen(_port);
