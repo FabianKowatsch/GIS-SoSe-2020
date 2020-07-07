@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="client.js" defer>
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <title>Aufgabe11</title>
+</head>
+
+<body>
+    <header>
+        Login
+    </header>
+    <main>
+        <form>
+            <div><label for="fname">Vorname:</label><br>
+                <input type="text" id="fname" name="fname"><br>
+                <label for="lname">Nachname:</label><br>
+                <input type="text" id="lname" name="lname"><br>
+                <label for="number">Matrikelnummer:</label><br>
+                <input type="number" id="number" name="number"><br>
+                <h5>Ansprache:</h5>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Herr</label><br>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Frau</label><br>
+
+
+
+            </div>
+            <button id="set" type="button">Senden</button>
+            <button id="get" type="button">Rückgabe</button>
+        </form>
+        <h5>Antwort:</h5>
+        <ul id="antwort"></ul>
+    </main>
+</body>
+
+</html>
