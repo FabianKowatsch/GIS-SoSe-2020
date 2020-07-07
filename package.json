@@ -10,7 +10,7 @@
     },
     "devDependencies": {},
     "scripts": {
-        "start": "node Aufgabe09/server.js"
+        "start": "node Aufgabe11/server.js remote"
     },
     "repository": {
         "type": "git",

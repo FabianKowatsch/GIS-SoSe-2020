@@ -25,7 +25,6 @@ export namespace A11Server {
         console.log("Server ist gestartet und hört auf den port: " + _port);
     }
 
-
     async function connectToDatabase(): Promise<void> {
         let url: string;
         switch (process.argv.slice(2)[0]) {
@@ -35,20 +34,19 @@ export namespace A11Server {
                 break;
             case "remote":
                 console.log("Remote Datenbank wird verwendet");
-                url = "mongodb+srv://User:<password>@gisfabiankowatsch.hc0v1.mongodb.net/<dbname>?retryWrites=true&w=majority";
+                url = "mongodb+srv://User:irgendeinpasswort123@gisfabiankowatsch.hc0v1.mongodb.net/A11?retryWrites=true&w=majority";
                 break;
             default:
                 console.log("Falsche Eingabe, Remote Datenbank wird verwendet");
-                url = "mongodb+srv://User:<password>@gisfabiankowatsch.hc0v1.mongodb.net/<dbname>?retryWrites=true&w=majority";
+                url = "mongodb+srv://User:irgendeinpasswort123@gisfabiankowatsch.hc0v1.mongodb.net/A11?retryWrites=true&w=majority";
         }
         let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(url, options);
         await mongoClient.connect();
-        personen = mongoClient.db("Test").collection("Personen");
+        personen = mongoClient.db("A11").collection("Personen");
         console.log("Database connection", personen != undefined);
     }
-   
-   
+    
     function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
         console.log("Ruhe!");
        
@@ -75,9 +73,7 @@ export namespace A11Server {
                     break;
 
             }
-
         }
-
         }
     function storePerson(_person: Person): void {
         personen.insert(_person);
@@ -92,6 +88,5 @@ export namespace A11Server {
             _response.write("___________________________<br/>");
         }
         _response.end();
-    }
-    
+    } 
     }

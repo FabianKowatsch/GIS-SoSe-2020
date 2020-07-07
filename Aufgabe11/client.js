@@ -5,7 +5,7 @@ var Aufgabe11;
     document.getElementById("get")?.addEventListener("click", hndGet);
     async function hndGet(_event) {
         let formData = new FormData(document.forms[0]);
-        let url = "http://localhost:8100/retrieve";
+        let url = "https://fabiankowatschgis.herokuapp.com/retrieve";
         // tslint:disable-next-line: no-any
         let query = new URLSearchParams(formData);
         url = url + "?" + query.toString();
@@ -13,7 +13,7 @@ var Aufgabe11;
     }
     async function hndSet(_event) {
         let formData = new FormData(document.forms[0]);
-        let url = "http://localhost:8100/send";
+        let url = "https://fabiankowatschgis.herokuapp.com/send";
         // tslint:disable-next-line: no-any
         let query = new URLSearchParams(formData);
         url = url + "?" + query.toString();
