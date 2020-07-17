@@ -1,12 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.A11Server = void 0;
+exports.EisdealerServer = void 0;
 const Http = require("http");
 const Url = require("url");
 const Mongo = require("mongodb");
-var A11Server;
-(function (A11Server) {
-    let personen;
+var EisdealerServer;
+(function (EisdealerServer) {
+    let currentIces;
+    let currentOrder;
+    let orders;
     let port = Number(process.env.PORT);
     if (!port) {
         port = 8100;
@@ -32,29 +34,29 @@ var A11Server;
                 url = "mongodb+srv://User:irgendeinpasswort123@gisfabiankowatsch.hc0v1.mongodb.net/A11?retryWrites=true&w=majority";
                 break;
             default:
-                console.log("Falsche Eingabe, Remote Datenbank wird verwendet");
-                url = "mongodb+srv://User:irgendeinpasswort123@gisfabiankowatsch.hc0v1.mongodb.net/A11?retryWrites=true&w=majority";
+                console.log("Falsche Eingabe, lokale Datenbank wird verwendet");
+                url = "mongodb://localhost:27017";
         }
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(url, options);
         await mongoClient.connect();
-        personen = mongoClient.db("A11").collection("Personen");
-        console.log("Database connection", personen != undefined);
+        orders = mongoClient.db("A11").collection("Personen");
+        console.log("Database connection", orders != undefined);
     }
     function handleRequest(_request, _response) {
         console.log("Ruhe!");
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
         if (_request.url) {
-            let url = Url.parse(_request.url, true);
             let link = new URL(_request.url, `http://${_request.headers.host}`);
             let path = link.pathname;
             switch (path) {
-                case "/retrieve":
-                    retrievePersons(_response);
-                    break;
                 case "/send":
-                    storePerson(url.query);
+                    sendOrders(link.search);
+                    _response.end();
+                    break;
+                case "/order":
+                    retrieveOrders(_response);
                     _response.end();
                     break;
                 default:
@@ -63,19 +65,27 @@ var A11Server;
             }
         }
     }
-    function storePerson(_person) {
-        personen.insert(_person);
+    function sendOrders(_search) {
+        let orderArray = _search.split("$$");
+        let url = Url.parse(orderArray[0], true);
+        currentOrder = url.query;
+        for (let i = 1; i < orderArray.length; i++) {
+            let url = Url.parse(orderArray[i], true);
+            currentIces[i - 1] = url.query;
+        }
+        currentOrder.ices = currentIces;
+        orders.insert(currentOrder);
     }
-    async function retrievePersons(_response) {
-        let personenArray = await personen.find().toArray();
-        for (let i = 0; i < personenArray.length; i++) {
-            let aktuellePerson = personenArray[i];
-            for (let key in aktuellePerson) {
-                _response.write(key + ":" + JSON.stringify(aktuellePerson[key]) + "<br/>");
+    async function retrieveOrders(_response) {
+        let ordersArray = await orders.find().toArray();
+        for (let i = 0; i < ordersArray.length; i++) {
+            let aktuelleOrder = ordersArray[i];
+            for (let key in aktuelleOrder) {
+                _response.write(key + ":" + JSON.stringify(aktuelleOrder[key]) + "<br/>");
             }
             _response.write("___________________________<br/>");
         }
         _response.end();
     }
-})(A11Server = exports.A11Server || (exports.A11Server = {}));
+})(EisdealerServer = exports.EisdealerServer || (exports.EisdealerServer = {}));
 //# sourceMappingURL=server.js.map
