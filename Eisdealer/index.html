@@ -17,18 +17,22 @@
     <main>
         <form id="create">
             <div id="kugeln">
-                <select class="kugeln" name="kugeln">
+                <select id="iceSelect" name="kugeln">
                 <option value="vanille">Vanille</option>
                 <option value="erdbeere">Erdbeere</option>
                 <option value="schokolade">Schokolade</option>
+                <option value="zitrone">Zitrone</option>
+                <option value="himbeere">Himbeere</option>
                 </select>
                 <button id="plus" type="button">+</button>
                 <br>
             </div>
             <input type="checkbox" name="topping" value="sauce">
             <label for="sauce">Schokosauce</label><br>
-            <input type="checkbox" name="topping" value="schoko">
-            <label for="schoko">Schokolade</label><br>
+            <input type="checkbox" name="topping" value="schokoflocken">
+            <label for="schoko">Schokoflocken</label><br>
+            <input type="checkbox" name="topping" value="schokobohnen">
+            <label for="schoko">Schokobohnen</label><br>
             <input type="checkbox" name="topping" value="streusel">
             <label for="streusel">Streusel</label><br>
             <input type="radio" name="behaelter" value="waffel">
@@ -47,6 +51,8 @@
 
         </form>
         <button type="button" id="send">Bestellung absenden</button>
+        <div id="eisanzeige"></div>
+
 
 
     </main>
