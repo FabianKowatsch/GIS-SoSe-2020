@@ -3,7 +3,7 @@ var Omega;
 (function (Omega) {
     let eis;
     let isLoggedIn = false;
-    let url = "http://localhost:8200";
+    let url = "http://localhost:8100";
     let personalData;
     let kugelcounter = 1;
     // Init wird beim Start aufgerufen
@@ -15,7 +15,7 @@ var Omega;
         loadDefaultIce();
     }
     function createEvents() {
-        window.addEventListener("load", hndClear);
+        hndClear();
         document.getElementById("add")?.addEventListener("click", hndAddToOrder);
         document.getElementById("plus")?.addEventListener("click", hndAddIce);
         document.getElementById("res")?.addEventListener("click", hndResetIce);
@@ -29,6 +29,10 @@ var Omega;
     }
     //Seitenaufbau
     function buildPage() {
+        let div = document.getElementById("kugelDiv");
+        let h1 = document.createElement("h3");
+        div.insertBefore(h1, div.firstChild);
+        h1.innerHTML = "Wählen sie Anzahl und Sorte der Kugeln:";
         let div1 = document.getElementById("kugeln");
         let select = document.createElement("select");
         select.setAttribute("id", "iceSelect");
@@ -42,6 +46,9 @@ var Omega;
         });
         div1.appendChild(select);
         let div2 = document.getElementById("toppingDiv");
+        let h2 = document.createElement("h3");
+        div2.appendChild(h2);
+        h2.innerHTML = "Wählen sie ihre Verpackung:";
         eis.topping.forEach(element => {
             let label = document.createElement("label");
             label.setAttribute("for", element.toLowerCase());
@@ -56,6 +63,9 @@ var Omega;
             div2.appendChild(label);
         });
         let div3 = document.getElementById("behälterDiv");
+        let h3 = document.createElement("h3");
+        div3.appendChild(h3);
+        h3.innerHTML = "Wählen sie ihre Verpackung:";
         eis.behälter.forEach(element => {
             let label = document.createElement("label");
             label.setAttribute("for", element.toLowerCase());
@@ -63,6 +73,8 @@ var Omega;
             input.setAttribute("type", "radio");
             input.setAttribute("name", "behaelter");
             input.setAttribute("value", element.toLowerCase());
+            if (element == "Waffel")
+                input.setAttribute("checked", "checked");
             label.appendChild(input);
             let span = document.createElement("span");
             span.innerHTML = element;
@@ -72,6 +84,11 @@ var Omega;
     }
     //Speichert ein erstelltes Eis bei Knopfdruck im Localstorage(Warenkorb/Bestellung) ab
     function hndAddToOrder() {
+        let formData1 = new FormData(document.forms[0]);
+        let list = Array.from(formData1.values());
+        let preis = list.length;
+        let preisinput = document.getElementById("preis");
+        preisinput.setAttribute("value", "" + preis);
         let formData = new FormData(document.forms[0]);
         let jsonData = JSON.stringify(Object.fromEntries(formData.entries()));
         console.log(jsonData);
@@ -79,13 +96,12 @@ var Omega;
         // tslint:disable-next-line: no-any
         let query = new URLSearchParams(formData);
         if (localStorage.length == 0)
-            localStorage.setItem("query", query.toString());
+            localStorage.setItem("query", "$$?" + query.toString());
         else {
             let querystring = localStorage.getItem("query");
             querystring += "$$?" + query;
             localStorage.setItem("query", querystring);
         }
-        console.log(localStorage.getItem("query"));
     }
     //Fügt dem DOM eine Selektoption zu, die eine Eiskugel repräsentiert
     function hndAddIce() {
@@ -174,7 +190,6 @@ var Omega;
             alert("Bitte Lieferdaten Eingaben");
         }
         else {
-            console.log(querystring);
             // tslint:disable-next-line: no-any
             let query = new URLSearchParams(formData);
             personalData = "?" + query.toString();
@@ -196,6 +211,8 @@ var Omega;
             alert("Bitte Lieferdaten Eingaben");
         else {
             let order = localStorage.getItem("query");
+            console.log(personalData);
+            console.log(order);
             await communicate(url + "/send" + personalData + order);
             alert("Ihre Bestellung war erfolgreich!");
         }

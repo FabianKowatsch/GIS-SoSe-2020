@@ -1,29 +1,106 @@
-
-
-namespace Eisdealer {
- 
-    window.addEventListener("load", hndClear);
-    document.getElementById("add")?.addEventListener("click", hndAddToOrder);
-    document.getElementById("plus")?.addEventListener("click", hndAddIce);
-    document.getElementById("res")?.addEventListener("click", hndResetIce);
-    document.getElementById("login")?.addEventListener("click", hndLogin);
-    document.getElementById("send")?.addEventListener("click", sendOrder);
-    document.getElementById("iceSelect")?.addEventListener("change", hndSelect);
-    let radios: NodeListOf<HTMLInputElement> = document.querySelectorAll("input[type=radio]");
-    radios.forEach(radio => {radio.addEventListener("change", hndRadio); });
-    let checks: NodeListOf<HTMLInputElement> = document.querySelectorAll("input[type=checkbox]");
-    checks.forEach(check => {check.addEventListener("change", hndCheckbox); });
-    
-    
+namespace Omega {
+    export interface Eis {
+        kugeln: string[];
+        topping: string[];
+        behälter: string[];
+    }
+    let eis: Eis;
     let isLoggedIn: boolean = false;
-    let url: string = "http://localhost:8200";
+    let url: string = "http://localhost:8100";
     let personalData: string;
     let kugelcounter: number = 1;
+    // Init wird beim Start aufgerufen
+    init();
+    async function init(): Promise<void> {
+        await getIceData("eis.json");
+        buildPage();
+        createEvents();
+        loadDefaultIce();
+    }
+    function createEvents(): void {
+        hndClear();
+        document.getElementById("add")?.addEventListener("click", hndAddToOrder);
+        document.getElementById("plus")?.addEventListener("click", hndAddIce);
+        document.getElementById("res")?.addEventListener("click", hndResetIce);
+        document.getElementById("login")?.addEventListener("click", hndLogin);
+        document.getElementById("send")?.addEventListener("click", sendOrder);
+        document.getElementById("iceSelect")?.addEventListener("change", hndSelect);
+        let radios: NodeListOf<HTMLInputElement> = document.querySelectorAll("input[type=radio]");
+        radios.forEach(radio => {radio.addEventListener("change", hndRadio); });
+        let checks: NodeListOf<HTMLInputElement> = document.querySelectorAll("input[type=checkbox]");
+        checks.forEach(check => {check.addEventListener("change", hndCheckbox); });
+    }
+    
+    
+    
+    //Seitenaufbau
+    function buildPage(): void {
+        let div: HTMLDivElement = <HTMLDivElement> document.getElementById("kugelDiv");
+        let h1: HTMLHeadingElement = <HTMLHeadingElement> document.createElement("h3");
+        div.insertBefore(h1, div.firstChild);
+        h1.innerHTML = "Wählen sie Anzahl und Sorte der Kugeln:";        
+        let div1: HTMLDivElement = <HTMLDivElement> document.getElementById("kugeln");
+        let select: HTMLSelectElement = <HTMLSelectElement> document.createElement("select");
+        select.setAttribute("id", "iceSelect");
+        select.setAttribute("name", "kugeln");
+        select.setAttribute("class", "selector");
+        eis.kugeln.forEach(element => { 
+            let option: HTMLOptionElement = <HTMLOptionElement> document.createElement("option");
+            option.setAttribute("value", element.toLowerCase());
+            option.innerHTML = element;
+            select.appendChild(option);
+            
+        });
+        div1.appendChild(select);
+        let div2: HTMLDivElement = <HTMLDivElement> document.getElementById("toppingDiv");
+        let h2: HTMLHeadingElement = <HTMLHeadingElement> document.createElement("h3");
+        div2.appendChild(h2);
+        h2.innerHTML = "Wählen sie ihre Verpackung:";
+        eis.topping.forEach(element => {
+            let label: HTMLLabelElement = <HTMLLabelElement> document.createElement("label");
+            label.setAttribute("for", element.toLowerCase());
+            let input: HTMLInputElement = <HTMLInputElement> document.createElement("input");
+            input.setAttribute("type", "checkbox");
+            input.setAttribute("name", "topping");
+            input.setAttribute("value", element.toLowerCase());
+            label.appendChild(input);
+            let span: HTMLSpanElement = <HTMLSpanElement> document.createElement("span");
+            span.innerHTML = element;
+            label.appendChild(span);
+            
+            div2.appendChild(label);
+            
+        });
+        let div3: HTMLDivElement = <HTMLDivElement> document.getElementById("behälterDiv");
+        let h3: HTMLHeadingElement = <HTMLHeadingElement> document.createElement("h3");
+        div3.appendChild(h3);
+        h3.innerHTML = "Wählen sie ihre Verpackung:";
+        eis.behälter.forEach(element => {
+            let label: HTMLLabelElement = <HTMLLabelElement> document.createElement("label");
+            label.setAttribute("for", element.toLowerCase());
+            let input: HTMLInputElement = <HTMLInputElement> document.createElement("input");
+            input.setAttribute("type", "radio");
+            input.setAttribute("name", "behaelter");
+            input.setAttribute("value", element.toLowerCase());
+            if (element == "Waffel")
+            input.setAttribute("checked", "checked");
+            label.appendChild(input);
+            let span: HTMLSpanElement = <HTMLSpanElement> document.createElement("span");
+            span.innerHTML = element;
+            label.appendChild(span);
+            div3.appendChild(label);
+            
+        });
+    }
 
     
     //Speichert ein erstelltes Eis bei Knopfdruck im Localstorage(Warenkorb/Bestellung) ab
     function hndAddToOrder(): void {
-        
+        let formData1: FormData = new FormData(document.forms[0]);
+        let list: Array<FormDataEntryValue> = Array.from(formData1.values());
+        let preis: number = list.length;
+        let preisinput: HTMLInputElement = <HTMLInputElement> document.getElementById("preis");
+        preisinput.setAttribute("value", "" + preis);
         let formData: FormData = new FormData(document.forms[0]);
         let jsonData: string = JSON.stringify(Object.fromEntries(formData.entries()));
         console.log(jsonData);
@@ -32,19 +109,15 @@ namespace Eisdealer {
         // tslint:disable-next-line: no-any
         let query: URLSearchParams = new URLSearchParams(<any>formData);
         if (localStorage.length == 0)
-        localStorage.setItem("query", query.toString());
+        localStorage.setItem("query", "$$?" + query.toString());
         else {
           let querystring: string = localStorage.getItem("query")!;
           querystring += "$$?" + query;
           localStorage.setItem("query", querystring);
         }
-        console.log(localStorage.getItem("query"));
-        
-        
-        
-
-        
+                     
     }
+    
     //Fügt dem DOM eine Selektoption zu, die eine Eiskugel repräsentiert
     function hndAddIce(): void {
         if (kugelcounter < 4) {
@@ -55,30 +128,19 @@ namespace Eisdealer {
         kugel.setAttribute("name", "kugeln");
         kugel.setAttribute("id", "" + kugelcounter);
         kugel.setAttribute("class", "selector");
-        let option1: HTMLOptionElement = document.createElement("option");
-        let option2: HTMLOptionElement = document.createElement("option");
-        let option3: HTMLOptionElement = document.createElement("option");
-        let option4: HTMLOptionElement = document.createElement("option");
-        let option5: HTMLOptionElement = document.createElement("option");
-        option1.setAttribute("value", "vanille");
-        option2.setAttribute("value", "erdbeere");
-        option3.setAttribute("value", "schokolade");
-        option4.setAttribute("value", "zitrone");
-        option5.setAttribute("value", "himbeere");
-        option1.innerHTML = "Vanille";
-        option2.innerHTML = "Erdbeere";
-        option3.innerHTML = "Schokolade";
-        option4.innerHTML = "Zitrone";
-        option5.innerHTML = "Himbeere";
+        eis.kugeln.forEach(element => { 
+            let option: HTMLOptionElement = <HTMLOptionElement> document.createElement("option");
+            option.setAttribute("value", element.toLowerCase());
+            option.innerHTML = element;
+            kugel.appendChild(option);
+            
+        });
+        
         div.appendChild(kugel);
-        kugel.appendChild(option1);
-        kugel.appendChild(option2);
-        kugel.appendChild(option3);
-        kugel.appendChild(option4);
-        kugel.appendChild(option5);
+      
         let anzeige: HTMLDivElement = <HTMLDivElement> document.getElementById("eisanzeige");
         let defaultEis: HTMLImageElement = document.createElement("img");
-        defaultEis.setAttribute("src", "Images/vanille.png");
+        defaultEis.setAttribute("src", image(eis.kugeln[0]));
         defaultEis.setAttribute("id", "k" + kugelcounter);
         defaultEis.setAttribute("class", "kugel");
         anzeige.appendChild(defaultEis);
@@ -98,45 +160,17 @@ namespace Eisdealer {
         kugelnummer = parseInt(aktuellekugel) - 1;
        let eisbilder: NodeListOf<HTMLImageElement> = document.querySelectorAll(".kugel");
        
+       eisbilder[kugelnummer].setAttribute("src", image(select.value));
        
-       switch (select.value) {
-        case "vanille": 
-            eisbilder[kugelnummer].setAttribute("src", "Images/vanille.png");
-            break;
-        case "erdbeere":
-            eisbilder[kugelnummer].setAttribute("src", "Images/erdbeere.png");
-            break;
-        case "schokolade":
-            eisbilder[kugelnummer].setAttribute("src", "Images/schokolade.png");
-            break;
-        case "himbeere":
-            eisbilder[kugelnummer].setAttribute("src", "Images/himbeere.png");
-            break;
-        case "zitrone":
-            eisbilder[kugelnummer].setAttribute("src", "Images/zitrone.png");
-            break;
-        default:
-            break;
-       }
-
     }
     //Zeigt je nach Auswahl des Radios den Behälter an
     function hndRadio(_event: Event): void {
         let radio: HTMLInputElement = <HTMLInputElement>_event.target;
         
         let behälterbild: HTMLImageElement = <HTMLImageElement>document.querySelector(".behälter");
-        switch (radio.value) {
-            case "waffel":
-                behälterbild.setAttribute("src", "Images/eistüte.png");
-                behälterbild.setAttribute("id", "waffel");
-                break;
-            case "becher":
-                behälterbild.setAttribute("src", "Images/eisbecher.png");
-                behälterbild.setAttribute("id", "becher");
-                break;
-            default:
-                break;
-        }
+        behälterbild.setAttribute("src", image(radio.value));
+        behälterbild.setAttribute("id", radio.value);
+       
     }
     //Zeigt je nach auswahl der Checkbox das jeweilige Topping an oder entfernt es
     function hndCheckbox(_event: Event): void {
@@ -145,18 +179,7 @@ namespace Eisdealer {
             let topping: HTMLImageElement = document.createElement("img");
             let anzeige: HTMLDivElement = <HTMLDivElement>document.getElementById("eisanzeige");
             topping.setAttribute("id", check.value);
-            switch (check.value) {
-                case "sauce":
-                    topping.setAttribute("src", "Images/schoko.png");
-                    break;
-                case "schokoflocken":
-                    topping.setAttribute("src", "Images/schokoflocken.png");
-                    break;  
-                case "streusel":
-                    topping.setAttribute("src", "Images/streusel.png");
-                    break;
-
-            }
+            topping.setAttribute("src", image(check.value));
             anzeige.appendChild(topping);
         }
         else {
@@ -197,7 +220,7 @@ namespace Eisdealer {
             alert("Bitte Lieferdaten Eingaben");
         }
         else {
-            console.log(querystring);
+            
             // tslint:disable-next-line: no-any
             let query: URLSearchParams = new URLSearchParams(<any>formData);
             personalData = "?" + query.toString();
@@ -221,6 +244,8 @@ namespace Eisdealer {
         else {
             
             let order: string = localStorage.getItem("query")!;
+            console.log(personalData);
+            console.log(order);
             await communicate(url + "/send" + personalData + order);
             alert("Ihre Bestellung war erfolgreich!");
         }
@@ -230,6 +255,17 @@ namespace Eisdealer {
     async function communicate(_url: RequestInfo): Promise<void> {
         let response: Response = await fetch(_url);
         console.log(response);
+    }
+    //lädt Eisdaten aus JSON
+    async function getIceData(_url: RequestInfo): Promise<void> {
+        let response: Response = await fetch(_url);
+        let rückgabe: JSON = await response.json();
+        
+        eis = JSON.parse(JSON.stringify(rückgabe));
+    }
+    //liefert link zum Bild
+    function image( s: string): string {
+        return "images/" + s.toLowerCase() + ".png";
     }
 
     //lädt Defaultoptionen des Eises und zeigt diese an
@@ -241,10 +277,10 @@ namespace Eisdealer {
           }
         let defaultBehälter: HTMLImageElement = document.createElement("img");
         let defaultEis: HTMLImageElement = document.createElement("img");
-        defaultBehälter.setAttribute("src", "Images/eistüte.png");
+        defaultBehälter.setAttribute("src", image(eis.behälter[0]));
         defaultBehälter.setAttribute("class", "behälter");
-        defaultBehälter.setAttribute("id", "waffel");
-        defaultEis.setAttribute("src", "Images/vanille.png");
+        defaultBehälter.setAttribute("id", eis.behälter[0].toLowerCase());
+        defaultEis.setAttribute("src", image(eis.kugeln[0]));
         defaultEis.setAttribute("class", "kugel");
         defaultEis.setAttribute("id", "k1");
         anzeige.appendChild(defaultBehälter);

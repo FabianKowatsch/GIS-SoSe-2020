@@ -6,7 +6,7 @@ const Url = require("url");
 const Mongo = require("mongodb");
 var EisdealerServer;
 (function (EisdealerServer) {
-    let currentIces;
+    let currentIces = new Array;
     let currentOrder;
     let orders;
     let port = Number(process.env.PORT);
@@ -34,13 +34,13 @@ var EisdealerServer;
                 url = "mongodb+srv://User:irgendeinpasswort123@gisfabiankowatsch.hc0v1.mongodb.net/A11?retryWrites=true&w=majority";
                 break;
             default:
-                console.log("Falsche Eingabe, lokale Datenbank wird verwendet");
-                url = "mongodb://localhost:27017";
+                console.log("Falsche Eingabe, remote Datenbank wird verwendet");
+                url = "mongodb+srv://User:irgendeinpasswort123@gisfabiankowatsch.hc0v1.mongodb.net/A11?retryWrites=true&w=majority";
         }
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(url, options);
         await mongoClient.connect();
-        orders = mongoClient.db("A11").collection("Personen");
+        orders = mongoClient.db("Eisdealer").collection("Orders");
         console.log("Database connection", orders != undefined);
     }
     function handleRequest(_request, _response) {
@@ -66,14 +66,18 @@ var EisdealerServer;
         }
     }
     function sendOrders(_search) {
+        console.log(_search);
         let orderArray = _search.split("$$");
+        console.log(orderArray);
         let url = Url.parse(orderArray[0], true);
         currentOrder = url.query;
+        console.log(currentOrder);
         for (let i = 1; i < orderArray.length; i++) {
             let url = Url.parse(orderArray[i], true);
-            currentIces[i - 1] = url.query;
+            currentIces.push(url.query);
         }
         currentOrder.ices = currentIces;
+        console.log(currentOrder);
         orders.insert(currentOrder);
     }
     async function retrieveOrders(_response) {

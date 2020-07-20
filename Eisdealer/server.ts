@@ -11,7 +11,7 @@ export namespace EisdealerServer {
         [type: string]: string | string[] | number;
        
     }
-    let currentIces: Ice[];
+    let currentIces: Ice[] = new Array;
     let currentOrder: Order;
 
     
@@ -50,13 +50,13 @@ export namespace EisdealerServer {
                 url = "mongodb+srv://User:irgendeinpasswort123@gisfabiankowatsch.hc0v1.mongodb.net/A11?retryWrites=true&w=majority";
                 break;
             default:
-                console.log("Falsche Eingabe, lokale Datenbank wird verwendet");
-                url = "mongodb://localhost:27017";
+                console.log("Falsche Eingabe, remote Datenbank wird verwendet");
+                url = "mongodb+srv://User:irgendeinpasswort123@gisfabiankowatsch.hc0v1.mongodb.net/A11?retryWrites=true&w=majority";
         }
         let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(url, options);
         await mongoClient.connect();
-        orders = mongoClient.db("A11").collection("Personen");
+        orders = mongoClient.db("Eisdealer").collection("Orders");
         console.log("Database connection", orders != undefined);
     }
 
@@ -98,16 +98,19 @@ export namespace EisdealerServer {
     
 
     function sendOrders(_search: string): void {
+        console.log(_search);
         let orderArray: string[] = _search.split("$$");
+        console.log(orderArray);
         let url: Url.UrlWithParsedQuery = Url.parse(orderArray[0], true);
         currentOrder = <Order>url.query;
-
+        console.log(currentOrder);
         for (let i: number = 1; i < orderArray.length; i++) {
             let url: Url.UrlWithParsedQuery = Url.parse(orderArray[i], true);
-            currentIces[i - 1] = <Ice>url.query as Ice;
+            currentIces.push(<Ice>url.query);
                   
         }
         currentOrder.ices = currentIces; 
+        console.log(currentOrder);
         orders.insert(currentOrder);
     }
 
