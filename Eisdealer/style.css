@@ -1,20 +1,293 @@
-.hide {
-    display: none;
-}
-
-#bild {
-    filter: contrast(160%);
-    width: 200px;
-    height: 400px;
-}
-
-
-/*.saturate { filter: saturate(3); }
-.grayscale { filter: grayscale(100%); }
-.contrast { filter: contrast(160%); }
-.brightness { filter: brightness(0.25); }
-.blur { filter: blur(3px); }
-.invert { filter: invert(100%); }
-.sepia { filter: sepia(100%); }
-.huerotate { filter: hue-rotate(180deg); }
-.rss.opacity { filter: opacity(50%); }
+        /*Elemente verstecken*/
+        
+        .hide {
+            display: none;
+        }
+        /*Eisanzeige*/
+        
+        #eisanzeige {
+            border: 2px black;
+            width: 280px;
+            height: 650px;
+            position: relative;
+        }
+        
+        .behälter {
+            z-index: 6;
+            position: absolute;
+            top: 130px;
+        }
+        
+        #waffel {
+            z-index: 6;
+            position: absolute;
+            top: 130px;
+        }
+        
+        #becher {
+            z-index: 6;
+            position: absolute;
+            top: 170px;
+            left: 8px;
+        }
+        
+        #k1 {
+            left: 23px;
+            top: 100px;
+            z-index: 4;
+            position: absolute;
+        }
+        
+        #k2 {
+            left: 55px;
+            top: 70px;
+            z-index: 3;
+            position: absolute;
+        }
+        
+        #k3 {
+            left: 15px;
+            top: 50px;
+            z-index: 2;
+            position: absolute;
+        }
+        
+        #k4 {
+            left: 40px;
+            top: 30px;
+            z-index: 1;
+            position: absolute;
+        }
+        
+        #schokosauce {
+            left: 60px;
+            top: 145px;
+            z-index: 5;
+            position: absolute;
+        }
+        
+        #streusel {
+            left: 40px;
+            top: 120px;
+            z-index: 5;
+            position: absolute;
+        }
+        
+        #schokoflocken {
+            left: 40px;
+            top: 125px;
+            z-index: 5;
+            position: absolute;
+        }
+        /*Auswahldivs*/
+        
+        #kugeln {
+            display: flex;
+            flex-flow: column wrap;
+        }
+        
+        #kugelDiv {
+            display: flex;
+            flex-flow: row wrap;
+            width: 400px;
+            height: 200x;
+            border: 1px solid black;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 5px 5px 5px gray;
+            padding: 20px;
+            justify-content: flex-start;
+        }
+        
+        .selector {
+            text-align-last: center;
+            text-align: center;
+            width: 200px;
+            margin: 5px 5px 5px 5px;
+            color: white;
+            background-color: royalblue;
+            border-radius: 15px;
+            border: 3px solid royalblue;
+        }
+        
+        #toppingDiv {
+            width: 400px;
+            height: 200px;
+            border: 1px solid black;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 5px 5px 5px gray;
+            padding: 20px;
+            align-items: baseline;
+        }
+        
+        #toppingDiv label {
+            background-color: white;
+            color: royalblue;
+            border-radius: 20px;
+            border: 3px solid royalblue;
+            width: 200px;
+            display: block;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+        
+        #toppingDiv input {
+            margin: 10px;
+            color: blue;
+        }
+        
+        #behälterDiv {
+            width: 400px;
+            height: 150px;
+            border: 1px solid black;
+            box-shadow: 5px 5px 5px gray;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-flow: column wrap;
+            padding: 20px;
+        }
+        
+        #behälterDiv label {
+            background-color: white;
+            color: royalblue;
+            border-radius: 20px;
+            border: 3px solid royalblue;
+            height: 30px;
+            width: 200px;
+            padding: 0px;
+            margin-left: 5px;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+        
+        #behälterDiv input {
+            margin: 10px;
+        }
+        
+        #plus {
+            width: 40px;
+            height: 40px;
+            color: royalblue;
+            background-color: white;
+            font-size: 20px;
+            border: 3px solid royalblue;
+            font-weight: 800;
+            outline: none;
+        }
+        
+        #plus:hover {
+            color: white;
+            background-color: royalblue;
+        }
+        
+        button {
+            color: royalblue;
+            background-color: white;
+            font-size: 15px;
+            border: 3px solid royalblue;
+            font-weight: 800;
+            border-radius: 30px;
+            padding: 2px;
+            outline: none;
+        }
+        
+        button:hover {
+            color: white;
+            background-color: royalblue;
+        }
+        
+        button:active {
+            color: black;
+        }
+        /* main*/
+        
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        main {
+            display: flex;
+            flex-flow: column wrap;
+        }
+        
+        #mainDiv {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-evenly;
+            font-size: 20px;
+            margin-top: 120px;
+        }
+        
+        #mainDiv * h3 {
+            font-size: 15px;
+            color: royalblue;
+        }
+        /*header*/
+        
+        header {
+            margin-top: 0;
+            width: 100%;
+            height: 80px;
+            background-color: royalblue;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            z-index: 7;
+        }
+        
+        .innerheader {
+            height: 100%;
+            display: flex;
+            flex-flow: column;
+            justify-content: space-evenly;
+        }
+        
+        .innerheader h1 {
+            color: white;
+            font-weight: 800;
+        }
+        
+        .innerheader h1 span {
+            font-weight: 300;
+        }
+        /*formular2*/
+        
+        #formDiv {
+            margin-top: 100px;
+            bottom: 0;
+            width: 100%;
+            height: 200px;
+            background-image: linear-gradient(rgba(0, 0, 255, 0), rgba(0, 0, 255, 1));
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #form2 {
+            display: flex;
+            flex-flow: column wrap;
+            width: 40%;
+            align-items: center;
+        }
+        
+        #form2 button {
+            width: 200px;
+        }
+        
+        #form2 button:hover {
+            border: 3px solid white;
+        }
+        
+        #send:hover {
+            border: 3px solid white;
+        }
+        
+        #form2 * {
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }

@@ -1,0 +1,5 @@
+{
+    "kugeln": ["Vanille", "Erdbeere", "Schokolade", "Himbeere", "Zitrone"],
+    "topping": ["Schokoflocken", "Schokosauce", "Streusel"],
+    "behälter": ["Waffel", "Becher"]
+}

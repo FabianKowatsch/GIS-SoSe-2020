@@ -1,75 +1,21 @@
 "use strict";
-var Omega;
-(function (Omega) {
-    let eis;
+var Eisdealer;
+(function (Eisdealer) {
+    window.addEventListener("load", hndClear);
+    document.getElementById("add")?.addEventListener("click", hndAddToOrder);
+    document.getElementById("plus")?.addEventListener("click", hndAddIce);
+    document.getElementById("res")?.addEventListener("click", hndResetIce);
+    document.getElementById("login")?.addEventListener("click", hndLogin);
+    document.getElementById("send")?.addEventListener("click", sendOrder);
+    document.getElementById("iceSelect")?.addEventListener("change", hndSelect);
+    let radios = document.querySelectorAll("input[type=radio]");
+    radios.forEach(radio => { radio.addEventListener("change", hndRadio); });
+    let checks = document.querySelectorAll("input[type=checkbox]");
+    checks.forEach(check => { check.addEventListener("change", hndCheckbox); });
     let isLoggedIn = false;
     let url = "http://localhost:8200";
     let personalData;
     let kugelcounter = 1;
-    // Init wird beim Start aufgerufen
-    init();
-    async function init() {
-        await getIceData("eis.json");
-        buildPage();
-        createEvents();
-        loadDefaultIce();
-    }
-    function createEvents() {
-        window.addEventListener("load", hndClear);
-        document.getElementById("add")?.addEventListener("click", hndAddToOrder);
-        document.getElementById("plus")?.addEventListener("click", hndAddIce);
-        document.getElementById("res")?.addEventListener("click", hndResetIce);
-        document.getElementById("login")?.addEventListener("click", hndLogin);
-        document.getElementById("send")?.addEventListener("click", sendOrder);
-        document.getElementById("iceSelect")?.addEventListener("change", hndSelect);
-        let radios = document.querySelectorAll("input[type=radio]");
-        radios.forEach(radio => { radio.addEventListener("change", hndRadio); });
-        let checks = document.querySelectorAll("input[type=checkbox]");
-        checks.forEach(check => { check.addEventListener("change", hndCheckbox); });
-    }
-    //Seitenaufbau
-    function buildPage() {
-        let div1 = document.getElementById("kugeln");
-        let select = document.createElement("select");
-        select.setAttribute("id", "iceSelect");
-        select.setAttribute("name", "kugeln");
-        select.setAttribute("class", "selector");
-        eis.kugeln.forEach(element => {
-            let option = document.createElement("option");
-            option.setAttribute("value", element.toLowerCase());
-            option.innerHTML = element;
-            select.appendChild(option);
-        });
-        div1.appendChild(select);
-        let div2 = document.getElementById("toppingDiv");
-        eis.topping.forEach(element => {
-            let label = document.createElement("label");
-            label.setAttribute("for", element.toLowerCase());
-            let input = document.createElement("input");
-            input.setAttribute("type", "checkbox");
-            input.setAttribute("name", "topping");
-            input.setAttribute("value", element.toLowerCase());
-            label.appendChild(input);
-            let span = document.createElement("span");
-            span.innerHTML = element;
-            label.appendChild(span);
-            div2.appendChild(label);
-        });
-        let div3 = document.getElementById("behälterDiv");
-        eis.behälter.forEach(element => {
-            let label = document.createElement("label");
-            label.setAttribute("for", element.toLowerCase());
-            let input = document.createElement("input");
-            input.setAttribute("type", "radio");
-            input.setAttribute("name", "behaelter");
-            input.setAttribute("value", element.toLowerCase());
-            label.appendChild(input);
-            let span = document.createElement("span");
-            span.innerHTML = element;
-            label.appendChild(span);
-            div3.appendChild(label);
-        });
-    }
     //Speichert ein erstelltes Eis bei Knopfdruck im Localstorage(Warenkorb/Bestellung) ab
     function hndAddToOrder() {
         let formData = new FormData(document.forms[0]);
@@ -97,16 +43,30 @@ var Omega;
             kugel.setAttribute("name", "kugeln");
             kugel.setAttribute("id", "" + kugelcounter);
             kugel.setAttribute("class", "selector");
-            eis.kugeln.forEach(element => {
-                let option = document.createElement("option");
-                option.setAttribute("value", element.toLowerCase());
-                option.innerHTML = element;
-                kugel.appendChild(option);
-            });
+            let option1 = document.createElement("option");
+            let option2 = document.createElement("option");
+            let option3 = document.createElement("option");
+            let option4 = document.createElement("option");
+            let option5 = document.createElement("option");
+            option1.setAttribute("value", "vanille");
+            option2.setAttribute("value", "erdbeere");
+            option3.setAttribute("value", "schokolade");
+            option4.setAttribute("value", "zitrone");
+            option5.setAttribute("value", "himbeere");
+            option1.innerHTML = "Vanille";
+            option2.innerHTML = "Erdbeere";
+            option3.innerHTML = "Schokolade";
+            option4.innerHTML = "Zitrone";
+            option5.innerHTML = "Himbeere";
             div.appendChild(kugel);
+            kugel.appendChild(option1);
+            kugel.appendChild(option2);
+            kugel.appendChild(option3);
+            kugel.appendChild(option4);
+            kugel.appendChild(option5);
             let anzeige = document.getElementById("eisanzeige");
             let defaultEis = document.createElement("img");
-            defaultEis.setAttribute("src", image(eis.kugeln[0]));
+            defaultEis.setAttribute("src", "Images/vanille.png");
             defaultEis.setAttribute("id", "k" + kugelcounter);
             defaultEis.setAttribute("class", "kugel");
             anzeige.appendChild(defaultEis);
@@ -124,14 +84,42 @@ var Omega;
         else
             kugelnummer = parseInt(aktuellekugel) - 1;
         let eisbilder = document.querySelectorAll(".kugel");
-        eisbilder[kugelnummer].setAttribute("src", image(select.value));
+        switch (select.value) {
+            case "vanille":
+                eisbilder[kugelnummer].setAttribute("src", "Images/vanille.png");
+                break;
+            case "erdbeere":
+                eisbilder[kugelnummer].setAttribute("src", "Images/erdbeere.png");
+                break;
+            case "schokolade":
+                eisbilder[kugelnummer].setAttribute("src", "Images/schokolade.png");
+                break;
+            case "himbeere":
+                eisbilder[kugelnummer].setAttribute("src", "Images/himbeere.png");
+                break;
+            case "zitrone":
+                eisbilder[kugelnummer].setAttribute("src", "Images/zitrone.png");
+                break;
+            default:
+                break;
+        }
     }
     //Zeigt je nach Auswahl des Radios den Behälter an
     function hndRadio(_event) {
         let radio = _event.target;
         let behälterbild = document.querySelector(".behälter");
-        behälterbild.setAttribute("src", image(radio.value));
-        behälterbild.setAttribute("id", radio.value);
+        switch (radio.value) {
+            case "waffel":
+                behälterbild.setAttribute("src", "Images/eistüte.png");
+                behälterbild.setAttribute("id", "waffel");
+                break;
+            case "becher":
+                behälterbild.setAttribute("src", "Images/eisbecher.png");
+                behälterbild.setAttribute("id", "becher");
+                break;
+            default:
+                break;
+        }
     }
     //Zeigt je nach auswahl der Checkbox das jeweilige Topping an oder entfernt es
     function hndCheckbox(_event) {
@@ -140,7 +128,17 @@ var Omega;
             let topping = document.createElement("img");
             let anzeige = document.getElementById("eisanzeige");
             topping.setAttribute("id", check.value);
-            topping.setAttribute("src", image(check.value));
+            switch (check.value) {
+                case "sauce":
+                    topping.setAttribute("src", "Images/schoko.png");
+                    break;
+                case "schokoflocken":
+                    topping.setAttribute("src", "Images/schokoflocken.png");
+                    break;
+                case "streusel":
+                    topping.setAttribute("src", "Images/streusel.png");
+                    break;
+            }
             anzeige.appendChild(topping);
         }
         else {
@@ -205,16 +203,6 @@ var Omega;
         let response = await fetch(_url);
         console.log(response);
     }
-    //lädt Eisdaten aus JSON
-    async function getIceData(_url) {
-        let response = await fetch(_url);
-        let rückgabe = await response.json();
-        eis = JSON.parse(JSON.stringify(rückgabe));
-    }
-    //liefert link zum Bild
-    function image(s) {
-        return "images/" + s.toLowerCase() + ".png";
-    }
     //lädt Defaultoptionen des Eises und zeigt diese an
     function loadDefaultIce() {
         let anzeige = document.getElementById("eisanzeige");
@@ -223,15 +211,15 @@ var Omega;
         }
         let defaultBehälter = document.createElement("img");
         let defaultEis = document.createElement("img");
-        defaultBehälter.setAttribute("src", image(eis.behälter[0]));
+        defaultBehälter.setAttribute("src", "Images/eistüte.png");
         defaultBehälter.setAttribute("class", "behälter");
-        defaultBehälter.setAttribute("id", eis.behälter[0].toLowerCase());
-        defaultEis.setAttribute("src", image(eis.kugeln[0]));
+        defaultBehälter.setAttribute("id", "waffel");
+        defaultEis.setAttribute("src", "Images/vanille.png");
         defaultEis.setAttribute("class", "kugel");
         defaultEis.setAttribute("id", "k1");
         anzeige.appendChild(defaultBehälter);
         anzeige.appendChild(defaultEis);
         kugelcounter = 1;
     }
-})(Omega || (Omega = {}));
-//# sourceMappingURL=client.js.map
+})(Eisdealer || (Eisdealer = {}));
+//# sourceMappingURL=client3.js.map

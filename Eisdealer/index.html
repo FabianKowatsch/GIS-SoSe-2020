@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta charset="UTF-8">
@@ -12,46 +12,48 @@
 
 <body>
     <header>
-
+        <div class="innerheader">
+            <h1>EIS<span>DEALER</span></h1>
+        </div>
     </header>
     <main>
-        <form id="create">
-            <div id="kugeln">
-                <select id="iceSelect" name="kugeln">
-                <option value="vanille">Vanille</option>
-                <option value="erdbeere">Erdbeere</option>
-                <option value="schokolade">Schokolade</option>
-                <option value="zitrone">Zitrone</option>
-                <option value="himbeere">Himbeere</option>
-                </select>
-                <button id="plus" type="button">+</button>
-                <br>
-            </div>
-            <input type="checkbox" name="topping" value="sauce">
-            <label for="sauce">Schokosauce</label><br>
-            <input type="checkbox" name="topping" value="schokoflocken">
-            <label for="schoko">Schokoflocken</label><br>
-            <input type="checkbox" name="topping" value="schokobohnen">
-            <label for="schoko">Schokobohnen</label><br>
-            <input type="checkbox" name="topping" value="streusel">
-            <label for="streusel">Streusel</label><br>
-            <input type="radio" name="behaelter" value="waffel">
-            <label for="waffel">Waffel</label><br>
-            <input type="radio" name="behaelter" value="becher">
-            <label for="becher">Becher</label><br>
-            <input type="hidden" name="preis">
-            <button id="add" type="button">Zum Warenkorb hinzufügen</button>
-            <button id="res" type="button" value="Reset form">Aktuelles Eis löschen</button>
-        </form>
-        <form>
-            <input type="text" name="fname" placeholder="Vorname">
-            <input type="text" name="lname" placeholder="Nachname">
-            <input type="text" name="adress" placeholder="Adresse">
-            <button type="button" id="login">Angaben bestätigen</button>
+        <div id="mainDiv">
+            <form id="create">
+                <div id="kugelDiv">
+                    <h3>Wählen sie Anzahl und Sorte der Kugeln:</h3>
+                    <div id="kugeln">
+                    </div>
 
-        </form>
-        <button type="button" id="send">Bestellung absenden</button>
-        <div id="eisanzeige"></div>
+                    <button id="plus" type="button">+</button>
+                    <br>
+                </div>
+                <div id="toppingDiv">
+                    <h3>Wählen sie ihre Toppings:</h3>
+
+
+                </div>
+                <div id="behälterDiv">
+                    <h3>Wählen sie ihre Verpackung:</h3>
+
+
+                </div>
+
+                <input type="hidden" name="preis">
+                <button id="add" type="button">Zum Warenkorb hinzufügen</button>
+                <button id="res" type="button" value="Reset form">Aktuelles Eis löschen</button>
+            </form>
+            <div id="eisanzeige"></div>
+        </div>
+        <div id="formDiv">
+            <form id="form2">
+                <input type="text" name="fname" placeholder="Vorname">
+                <input type="text" name="lname" placeholder="Nachname">
+                <input type="text" name="adress" placeholder="Adresse">
+                <button type="button" id="login">Angaben bestätigen</button>
+
+            </form>
+            <button type="button" id="send">Bestellung absenden</button>
+        </div>
 
 
 
