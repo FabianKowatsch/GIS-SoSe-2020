@@ -55,8 +55,11 @@ var EisdealerServer;
                     sendOrders(link.search);
                     _response.end();
                     break;
-                case "/order":
+                case "/retrieve":
                     retrieveOrders(_response);
+                    break;
+                case "/delete":
+                    deleteDbEntry(link.search);
                     _response.end();
                     break;
                 default:
@@ -66,30 +69,25 @@ var EisdealerServer;
         }
     }
     function sendOrders(_search) {
-        console.log(_search);
         let orderArray = _search.split("$$");
-        console.log(orderArray);
         let url = Url.parse(orderArray[0], true);
         currentOrder = url.query;
-        console.log(currentOrder);
         for (let i = 1; i < orderArray.length; i++) {
             let url = Url.parse(orderArray[i], true);
             currentIces.push(url.query);
         }
         currentOrder.ices = currentIces;
-        console.log(currentOrder);
         orders.insert(currentOrder);
     }
     async function retrieveOrders(_response) {
         let ordersArray = await orders.find().toArray();
-        for (let i = 0; i < ordersArray.length; i++) {
-            let aktuelleOrder = ordersArray[i];
-            for (let key in aktuelleOrder) {
-                _response.write(key + ":" + JSON.stringify(aktuelleOrder[key]) + "<br/>");
-            }
-            _response.write("___________________________<br/>");
-        }
+        _response.write(JSON.stringify(ordersArray));
         _response.end();
+    }
+    async function deleteDbEntry(_search) {
+        let url = Url.parse(_search, true);
+        let str = url.query["id"];
+        await orders.deleteOne({ "_id": Mongo.ObjectId.bind(str) });
     }
 })(EisdealerServer = exports.EisdealerServer || (exports.EisdealerServer = {}));
 //# sourceMappingURL=server.js.map

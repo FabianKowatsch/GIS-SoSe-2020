@@ -1,4 +1,4 @@
-namespace Omega {
+namespace EisdealerUser {
     export interface Eis {
         kugeln: string[];
         topping: string[];
@@ -143,6 +143,7 @@ namespace Omega {
         defaultEis.setAttribute("src", image(eis.kugeln[0]));
         defaultEis.setAttribute("id", "k" + kugelcounter);
         defaultEis.setAttribute("class", "kugel");
+        defaultEis.setAttribute("alt", "Eiskugel");
         anzeige.appendChild(defaultEis);
         }
         else
@@ -180,6 +181,7 @@ namespace Omega {
             let anzeige: HTMLDivElement = <HTMLDivElement>document.getElementById("eisanzeige");
             topping.setAttribute("id", check.value);
             topping.setAttribute("src", image(check.value));
+            topping.setAttribute("alt", check.value);
             anzeige.appendChild(topping);
         }
         else {

@@ -1,6 +1,6 @@
 "use strict";
-var Omega;
-(function (Omega) {
+var EisdealerUser;
+(function (EisdealerUser) {
     let eis;
     let isLoggedIn = false;
     let url = "http://localhost:8100";
@@ -125,6 +125,7 @@ var Omega;
             defaultEis.setAttribute("src", image(eis.kugeln[0]));
             defaultEis.setAttribute("id", "k" + kugelcounter);
             defaultEis.setAttribute("class", "kugel");
+            defaultEis.setAttribute("alt", "Eiskugel");
             anzeige.appendChild(defaultEis);
         }
         else
@@ -157,6 +158,7 @@ var Omega;
             let anzeige = document.getElementById("eisanzeige");
             topping.setAttribute("id", check.value);
             topping.setAttribute("src", image(check.value));
+            topping.setAttribute("alt", check.value);
             anzeige.appendChild(topping);
         }
         else {
@@ -252,5 +254,5 @@ var Omega;
         anzeige.appendChild(defaultEis);
         kugelcounter = 1;
     }
-})(Omega || (Omega = {}));
+})(EisdealerUser || (EisdealerUser = {}));
 //# sourceMappingURL=client.js.map
