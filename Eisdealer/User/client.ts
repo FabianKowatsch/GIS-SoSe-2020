@@ -19,12 +19,12 @@ namespace Omega {
     }
     function createEvents(): void {
         hndClear();
-        document.getElementById("add")?.addEventListener("click", hndAddToOrder);
-        document.getElementById("plus")?.addEventListener("click", hndAddIce);
-        document.getElementById("res")?.addEventListener("click", hndResetIce);
-        document.getElementById("login")?.addEventListener("click", hndLogin);
-        document.getElementById("send")?.addEventListener("click", sendOrder);
-        document.getElementById("iceSelect")?.addEventListener("change", hndSelect);
+        document.getElementById("addToOrder")!.addEventListener("click", hndAddToOrder);
+        document.getElementById("plus")!.addEventListener("click", hndAddIce);
+        document.getElementById("res")!.addEventListener("click", hndResetIce);
+        document.getElementById("login")!.addEventListener("click", hndLogin);
+        document.getElementById("send")!.addEventListener("click", sendOrder);
+        document.getElementById("iceSelect")!.addEventListener("change", hndSelect);
         let radios: NodeListOf<HTMLInputElement> = document.querySelectorAll("input[type=radio]");
         radios.forEach(radio => {radio.addEventListener("change", hndRadio); });
         let checks: NodeListOf<HTMLInputElement> = document.querySelectorAll("input[type=checkbox]");
@@ -184,7 +184,7 @@ namespace Omega {
         }
         else {
             let topping: HTMLImageElement = <HTMLImageElement>document.getElementById(check.value);
-            topping.parentNode?.removeChild(topping);
+            topping.parentNode!.removeChild(topping);
         }
     }
 // löscht Eis aus der Anzeige und aus dem localstorage
@@ -201,7 +201,7 @@ namespace Omega {
         
         for (let i: number = allSelects.length - 1; i > 0; i--) {
            
-            allSelects[i].parentNode?.removeChild(allSelects[i]);
+            allSelects[i].parentNode!.removeChild(allSelects[i]);
             
     }
         loadDefaultIce();  
@@ -232,7 +232,7 @@ namespace Omega {
             knopf.previousElementSibling!.previousElementSibling!.previousElementSibling!.setAttribute("class", "hide");
             let a: HTMLDivElement = document.createElement("div");
             a.innerHTML = "Ihre Daten wurden erfolgreich übernommen!";
-            knopf.parentNode?.appendChild(a);
+            knopf.parentNode!.appendChild(a);
             isLoggedIn = true;
             
         }       
@@ -280,9 +280,11 @@ namespace Omega {
         defaultBehälter.setAttribute("src", image(eis.behälter[0]));
         defaultBehälter.setAttribute("class", "behälter");
         defaultBehälter.setAttribute("id", eis.behälter[0].toLowerCase());
+        defaultBehälter.setAttribute("alt", eis.behälter[0]);
         defaultEis.setAttribute("src", image(eis.kugeln[0]));
         defaultEis.setAttribute("class", "kugel");
         defaultEis.setAttribute("id", "k1");
+        defaultEis.setAttribute("alt", eis.kugeln[0]);
         anzeige.appendChild(defaultBehälter);
         anzeige.appendChild(defaultEis);
         kugelcounter = 1;
