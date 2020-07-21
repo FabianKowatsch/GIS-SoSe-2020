@@ -354,6 +354,11 @@
         /*mobile*/
         
         @media all and (max-width: 600px) {
+            body {
+                width: 100%;
+                overscroll-behavior-y: none;
+                overscroll-behavior-x: none;
+            }
             main {
                 display: flex;
                 flex-flow: column wrap;
@@ -390,7 +395,7 @@
             }
             #formDiv {
                 flex-flow: column;
-                height: 400px;
+                height: 450px;
             }
             #counter {
                 padding: 10px;
