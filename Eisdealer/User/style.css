@@ -397,6 +397,9 @@
                 flex-flow: column;
                 height: 450px;
             }
+            #form2 {
+                width: 60%;
+            }
             #counter {
                 padding: 10px;
                 margin: 5px;
