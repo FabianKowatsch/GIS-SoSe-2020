@@ -12,7 +12,7 @@ namespace EisdealerOperator {
        
     }
 
-    let url: string = "http://localhost:8100";
+    let url: string = "https://fabiankowatschgis.herokuapp.com";
     document.getElementById("button")!.addEventListener("click", retrieveData);
     async function retrieveData(): Promise<void> {
         

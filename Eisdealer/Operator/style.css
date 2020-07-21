@@ -1,5 +1,6 @@
 body {
     margin-top: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 header {
@@ -30,10 +31,21 @@ header {
     font-weight: 300;
 }
 
+main {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
 #main {
     display: flex;
     flex-flow: row;
     justify-content: space-evenly;
+}
+
+#main h3 {
+    color: royalblue;
+    font-size: 35px;
 }
 
 #ausstehend {
@@ -44,6 +56,7 @@ header {
     display: flex;
     flex-flow: column;
     align-items: center;
+    margin: 10%;
 }
 
 #aktiv {
@@ -54,15 +67,40 @@ header {
     display: flex;
     flex-flow: column;
     align-items: center;
+    margin: 10%;
+}
+
+#button {
+    margin-top: 150 px;
 }
 
 button {
-    margin-top: 100px;
+    margin: 20px;
+    color: royalblue;
+    background-color: white;
+    font-size: 15px;
+    border: 3px solid royalblue;
+    font-weight: 800;
+    border-radius: 30px;
+    padding: 2px;
+    outline: none;
+    width: 200px;
+}
+
+button:hover {
+    color: white;
+    background-color: royalblue;
+}
+
+button:active {
+    color: black;
 }
 
 .inneritem {
-    border: 2px solid black;
+    border: 2px solid royalblue;
+    border-radius: 20px;
     margin: 10px;
+    min-width: 400px;
 }
 
 .inneritem ul {
@@ -70,11 +108,57 @@ button {
 }
 
 .item {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    align-items: center;
     border: 2px solid black;
+    border-radius: 10px;
     margin: 20px;
-    min-width: 600px;
+    min-width: 500px;
 }
 
 .item ul {
     list-style: none;
+}
+
+@media all and (max-width: 1400px) {
+    #main h3 {
+        font-size: 25px;
+    }
+    button {
+        width: 150px;
+        font-size: 10px;
+    }
+    .item {
+        width: 400px;
+        min-width: 0;
+        font-size: 12px;
+        margin: 10px;
+    }
+    .inneritem {
+        font-size: 10px;
+        width: 300px;
+        min-width: 0;
+    }
+}
+
+@media all and (max-width: 1024 px) {
+    #main h3 {
+        font-size: 20px;
+    }
+    button {
+        width: 100px;
+        font-size: 10px;
+    }
+    .item {
+        width: 200px;
+        min-width: 0;
+        font-size: 12px;
+    }
+    .inneritem {
+        font-size: 10px;
+        width: 180px;
+        min-width: 0;
+    }
 }

@@ -1,7 +1,7 @@
 "use strict";
 var EisdealerOperator;
 (function (EisdealerOperator) {
-    let url = "http://localhost:8100";
+    let url = "https://fabiankowatschgis.herokuapp.com";
     document.getElementById("button").addEventListener("click", retrieveData);
     async function retrieveData() {
         let response = await communicate(url + "/retrieve");
