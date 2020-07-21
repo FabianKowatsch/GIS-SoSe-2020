@@ -3,9 +3,11 @@ var EisdealerUser;
 (function (EisdealerUser) {
     let eis;
     let isLoggedIn = false;
-    let url = "http://localhost:8100";
+    let url = "https://fabiankowatschgis.herokuapp.com";
     let personalData;
     let kugelcounter = 1;
+    let counter = 0;
+    let totalPrice = 0;
     // Init wird beim Start aufgerufen
     init();
     async function init() {
@@ -48,7 +50,7 @@ var EisdealerUser;
         let div2 = document.getElementById("toppingDiv");
         let h2 = document.createElement("h3");
         div2.appendChild(h2);
-        h2.innerHTML = "Wählen sie ihre Verpackung:";
+        h2.innerHTML = "Wählen sie ihre Toppings:";
         eis.topping.forEach(element => {
             let label = document.createElement("label");
             label.setAttribute("for", element.toLowerCase());
@@ -84,11 +86,17 @@ var EisdealerUser;
     }
     //Speichert ein erstelltes Eis bei Knopfdruck im Localstorage(Warenkorb/Bestellung) ab
     function hndAddToOrder() {
+        counter++;
         let formData1 = new FormData(document.forms[0]);
         let list = Array.from(formData1.values());
         let preis = list.length;
+        totalPrice += preis;
         let preisinput = document.getElementById("preis");
         preisinput.setAttribute("value", "" + preis);
+        let price = document.getElementById("price");
+        price.innerHTML = totalPrice + "";
+        let cart = document.getElementById("counter");
+        cart.innerText = counter + "";
         let formData = new FormData(document.forms[0]);
         let jsonData = JSON.stringify(Object.fromEntries(formData.entries()));
         console.log(jsonData);
@@ -202,6 +210,7 @@ var EisdealerUser;
             knopf.previousElementSibling.previousElementSibling.setAttribute("class", "hide");
             knopf.previousElementSibling.previousElementSibling.previousElementSibling.setAttribute("class", "hide");
             let a = document.createElement("div");
+            a.setAttribute("id", "datardy");
             a.innerHTML = "Ihre Daten wurden erfolgreich übernommen!";
             knopf.parentNode.appendChild(a);
             isLoggedIn = true;

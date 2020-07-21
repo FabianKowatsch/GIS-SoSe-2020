@@ -6,9 +6,11 @@ namespace EisdealerUser {
     }
     let eis: Eis;
     let isLoggedIn: boolean = false;
-    let url: string = "http://localhost:8100";
+    let url: string = "https://fabiankowatschgis.herokuapp.com";
     let personalData: string;
     let kugelcounter: number = 1;
+    let counter: number = 0;
+    let totalPrice: number = 0;
     // Init wird beim Start aufgerufen
     init();
     async function init(): Promise<void> {
@@ -55,7 +57,7 @@ namespace EisdealerUser {
         let div2: HTMLDivElement = <HTMLDivElement> document.getElementById("toppingDiv");
         let h2: HTMLHeadingElement = <HTMLHeadingElement> document.createElement("h3");
         div2.appendChild(h2);
-        h2.innerHTML = "Wählen sie ihre Verpackung:";
+        h2.innerHTML = "Wählen sie ihre Toppings:";
         eis.topping.forEach(element => {
             let label: HTMLLabelElement = <HTMLLabelElement> document.createElement("label");
             label.setAttribute("for", element.toLowerCase());
@@ -96,11 +98,19 @@ namespace EisdealerUser {
     
     //Speichert ein erstelltes Eis bei Knopfdruck im Localstorage(Warenkorb/Bestellung) ab
     function hndAddToOrder(): void {
+        counter++;
+        
         let formData1: FormData = new FormData(document.forms[0]);
         let list: Array<FormDataEntryValue> = Array.from(formData1.values());
         let preis: number = list.length;
+        totalPrice += preis;
         let preisinput: HTMLInputElement = <HTMLInputElement> document.getElementById("preis");
         preisinput.setAttribute("value", "" + preis);
+        let price: HTMLElement = <HTMLElement> document.getElementById("price");
+        price.innerHTML =  totalPrice + "";
+        let cart: HTMLElement = <HTMLElement>document.getElementById("counter");
+        cart.innerText = counter + "";
+
         let formData: FormData = new FormData(document.forms[0]);
         let jsonData: string = JSON.stringify(Object.fromEntries(formData.entries()));
         console.log(jsonData);
@@ -233,6 +243,7 @@ namespace EisdealerUser {
             knopf.previousElementSibling!.previousElementSibling!.setAttribute("class", "hide");
             knopf.previousElementSibling!.previousElementSibling!.previousElementSibling!.setAttribute("class", "hide");
             let a: HTMLDivElement = document.createElement("div");
+            a.setAttribute("id", "datardy");
             a.innerHTML = "Ihre Daten wurden erfolgreich übernommen!";
             knopf.parentNode!.appendChild(a);
             isLoggedIn = true;

@@ -89,14 +89,14 @@
         #kugelDiv {
             display: flex;
             flex-flow: row wrap;
-            width: 400px;
+            width: 70%;
             height: 200x;
             border: 1px solid black;
             border-radius: 10px;
             margin-bottom: 20px;
             box-shadow: 5px 5px 5px gray;
             padding: 20px;
-            justify-content: flex-start;
+            justify-content: space-evenly;
         }
         
         .selector {
@@ -111,14 +111,17 @@
         }
         
         #toppingDiv {
-            width: 400px;
+            display: flex;
+            flex-flow: column wrap;
+            width: 70%;
             height: 200px;
             border: 1px solid black;
             border-radius: 10px;
             margin-bottom: 20px;
             box-shadow: 5px 5px 5px gray;
             padding: 20px;
-            align-items: baseline;
+            align-items: center;
+            justify-content: space-around;
         }
         
         #toppingDiv label {
@@ -138,7 +141,7 @@
         }
         
         #behälterDiv {
-            width: 400px;
+            width: 70%;
             height: 150px;
             border: 1px solid black;
             box-shadow: 5px 5px 5px gray;
@@ -146,6 +149,8 @@
             margin-bottom: 20px;
             display: flex;
             flex-flow: column wrap;
+            align-items: center;
+            justify-content: space-around;
             padding: 20px;
         }
         
@@ -210,6 +215,7 @@
         }
         
         main {
+            width: 100%;
             display: flex;
             flex-flow: column wrap;
         }
@@ -258,14 +264,56 @@
         
         #formDiv {
             margin-top: 100px;
+            margin-left: 0;
+            margin-right: 0;
             bottom: 0;
             width: 100%;
-            height: 200px;
+            height: 300px;
             background-image: linear-gradient(rgba(0, 0, 255, 0), rgba(0, 0, 255, 1));
+            display: flex;
+            flex-flow: row;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #warenkorb {
             display: flex;
             flex-flow: column;
             align-items: center;
-            justify-content: center;
+            justify-content: space-evenly;
+            box-shadow: 5px 5px 5px royalblue;
+            border-radius: 10px;
+            border: 1px solid blue;
+            height: 200px;
+            width: 30%;
+            background-color: white;
+        }
+        
+        #warenkorb h3 {
+            color: royalblue;
+            font-size: 20px;
+        }
+        
+        #warenkorb p {
+            color: royalblue;
+        }
+        
+        #price {
+            font-weight: 600;
+        }
+        
+        #counter {
+            display: block;
+            width: 20px;
+            height: 20px;
+            padding: 20px;
+            border: 3px solid royalblue;
+            border-radius: 15px;
+            background-color: royalblue;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
         }
         
         #form2 {
@@ -290,4 +338,85 @@
         #form2 * {
             margin-top: 5px;
             margin-bottom: 10px;
+        }
+        
+        #form2 input[type=text] {
+            border: 2px solid blue;
+            color: royalblue;
+            height: 20px;
+            opacity: 0.6;
+        }
+        
+        #datardy {
+            color: white;
+            font-weight: 600;
+        }
+        /*mobile*/
+        
+        @media all and (max-width: 600px) {
+            main {
+                display: flex;
+                flex-flow: column wrap;
+                width: 100%;
+                align-items: center;
+                justify-content: space-evenly;
+            }
+            #mainDiv {
+                display: flex;
+                flex-flow: column wrap;
+                flex-direction: column-reverse;
+                align-items: center;
+            }
+            #create {
+                align-items: center;
+                align-content: center;
+                justify-content: space-evenly;
+            }
+            #create div {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+            #addToOrder {
+                margin-left: 5%;
+                width: 40%;
+                font-size: 12px;
+            }
+            #addToOrder+button {
+                margin-right: 5%;
+                width: 40%;
+                font-size: 12px;
+            }
+            #formDiv {
+                flex-flow: column;
+                height: 400px;
+            }
+            #counter {
+                padding: 10px;
+                margin: 5px;
+            }
+            #warenkorb {
+                margin-bottom: 10px;
+                padding: 10px;
+                width: 50%;
+            }
+        }
+        /*tablet*/
+        
+        @media all and (max-width: 1024px) {
+            .selector {
+                width: 150px;
+            }
+            #create div {
+                width: 60%;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+            #addToOrder {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
         }
