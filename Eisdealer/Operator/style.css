@@ -71,7 +71,7 @@ main {
 }
 
 #button {
-    margin-top: 150 px;
+    margin-top: 150px;
 }
 
 button {
@@ -122,9 +122,9 @@ button:active {
     list-style: none;
 }
 
-@media all and (max-width: 1400px) {
+@media all and(max-width: 1400px) {
     #main h3 {
-        font-size: 25px;
+        font-size: 20px;
     }
     button {
         width: 150px;
@@ -143,7 +143,10 @@ button:active {
     }
 }
 
-@media all and (max-width: 1024 px) {
+@media all and (max-width: 1024px) {
+    #main {
+        justify-content: space-between;
+    }
     #main h3 {
         font-size: 20px;
     }
@@ -152,13 +155,28 @@ button:active {
         font-size: 10px;
     }
     .item {
-        width: 200px;
+        width: 85%;
         min-width: 0;
-        font-size: 12px;
+        font-size: 10px;
+        margin: 0;
+        margin-bottom: 20px;
     }
     .inneritem {
-        font-size: 10px;
-        width: 180px;
+        font-size: 8px;
+        width: 80%;
         min-width: 0;
+        align-items: baseline;
+        text-align: left;
+    }
+    .inneritem ul {
+        text-align: left;
+    }
+    #aktiv {
+        width: 50%;
+        margin: 0;
+    }
+    #ausstehend {
+        width: 50%;
+        margin: 0;
     }
 }
