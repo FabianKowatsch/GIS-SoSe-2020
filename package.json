@@ -10,7 +10,7 @@
     },
     "devDependencies": {},
     "scripts": {
-        "start": "node Eisdealer/server.js remote"
+        "start": "node Eisdealer/Server/server.js remote"
     },
     "repository": {
         "type": "git",
