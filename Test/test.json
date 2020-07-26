@@ -1,0 +1,20 @@
+{
+    "DBs": [{
+        "name": "Eisdealer",
+        "collections": [{
+            "name": "Orders",
+            "documentstructure": {
+                "_id": "string",
+                "fname": "number",
+                "lname": "string",
+                "adress": "string",
+                "ices": [{
+                    "kugeln": "string[]",
+                    "topping": "string[]",
+                    "behaelter": "string[]",
+                    "preis": "string"
+                }]
+            }
+        }]
+    }]
+}
